@@ -15,17 +15,23 @@ type StrategyPerformanceMetrics = {
   maxDrawdown: string;
 };
 
+export type StrategyParameters = Record<string, any>;
+
+export type Strategy = {
+  id: string;
+  name: string;
+  description: string;
+  longDescription?: string;
+  type: string;
+  isPremium: boolean;
+  parameters: StrategyParameters;
+  riskLevel: "low" | "medium" | "high";
+  performanceMetrics: StrategyPerformanceMetrics;
+  tradingRules?: string[];
+};
+
 type StrategyProps = {
-  strategy: {
-    id: string;
-    name: string;
-    description: string;
-    type: string;
-    isPremium: boolean;
-    parameters: Record<string, any>;
-    riskLevel: "low" | "medium" | "high";
-    performanceMetrics: StrategyPerformanceMetrics;
-  };
+  strategy: Strategy;
   onSelect: () => void;
 };
 

@@ -5,8 +5,9 @@ import { useAuth } from "@/context/AuthContext";
 import { Strategy } from "@/components/Strategy";
 import { AlertCircle } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import type { Strategy as StrategyType } from "@/components/Strategy";
 
-const strategyData = [
+const strategyData: StrategyType[] = [
   {
     id: "rsi",
     name: "RSI (Relative Strength Index)",
