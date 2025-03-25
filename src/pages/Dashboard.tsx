@@ -67,7 +67,12 @@ const Dashboard = () => {
               <p className="text-muted-foreground mb-4">
                 Browse our library of proven trading strategies.
               </p>
-              <Button className="w-full">View Strategies</Button>
+              <Button 
+                className="w-full"
+                onClick={() => navigate('/strategies')}
+              >
+                View Strategies
+              </Button>
             </div>
             
             <div className="bg-card p-6 rounded-lg border">
