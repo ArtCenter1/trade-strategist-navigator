@@ -1,0 +1,79 @@
+
+# Strategy Selection Reference
+
+## Overview
+The strategy selection interface allows users to browse, compare, and deploy trading strategies. It should present strategies clearly with relevant performance metrics and configuration options.
+
+## Objectives
+- Present available trading strategies in an intuitive interface
+- Provide clear performance metrics for each strategy
+- Allow strategy customization and parameter adjustment
+- Facilitate strategy comparison
+- Enable easy deployment of selected strategies
+
+## Design Guidelines
+- Clear, card-based strategy representation
+- Visual performance indicators and charts
+- Intuitive parameter configuration interfaces
+- Consistent design language with the platform
+- Progressive disclosure of complex options
+
+## Component Structure
+1. **Strategy Library**
+   - Filterable grid of strategy cards
+   - Search functionality
+   - Category filters
+   - Sorting options (performance, popularity, etc.)
+
+2. **Strategy Card**
+   - Strategy name and description
+   - Key performance metrics
+   - Risk category indicator
+   - Thumbnail performance chart
+   - Quick action buttons
+
+3. **Strategy Detail View**
+   - Comprehensive performance metrics
+   - Detailed description and methodology
+   - Historical performance charts
+   - Backtest results
+   - Creator information (if applicable)
+
+4. **Strategy Configuration**
+   - Parameter adjustment interface
+   - Input validation
+   - Tooltips for parameter explanations
+   - Performance impact indicators
+   - Save configuration option
+
+5. **Strategy Comparison**
+   - Side-by-side comparison of selected strategies
+   - Comparative metrics table
+   - Overlaid performance charts
+   - Pros/cons analysis
+
+6. **Strategy Deployment**
+   - Exchange selection
+   - Asset pair selection
+   - Position sizing options
+   - Risk management settings
+   - Deployment confirmation
+
+## Implementation Status
+- Planning phase
+- Not yet implemented
+
+## Next Steps
+1. Design strategy card component
+2. Implement strategy library grid
+3. Create strategy detail page
+4. Develop configuration interface
+5. Build comparison tool
+6. Implement deployment flow
+
+## Technical Notes
+- Use tabs or accordion for organizing detailed information
+- Implement form validation for configuration parameters
+- Consider wizard pattern for deployment flow
+- Use tooltips for explaining technical terms
+- Ensure responsive behavior for all components

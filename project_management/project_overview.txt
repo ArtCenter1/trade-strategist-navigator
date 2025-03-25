@@ -1,0 +1,66 @@
+
+# Trading Bot Project Overview
+
+## Vision
+
+Create a sophisticated trading bot platform that allows users to select and deploy various trading strategies across multiple exchanges. The platform will provide a user-friendly interface for strategy selection, exchange API connections, performance monitoring, and payment processing.
+
+## Core Features
+
+1. **Landing Page**
+   - Introduction to the platform
+   - Feature showcase
+   - Pricing information
+   - Sign-up/login buttons
+
+2. **User Authentication**
+   - Registration and login
+   - User profile management
+   - Account security features
+
+3. **Dashboard**
+   - Performance overview
+   - Active strategies
+   - Account balances
+   - Recent trades
+   - Notifications
+
+4. **Strategy Selection**
+   - Library of pre-built strategies
+   - Strategy details and historical performance
+   - Strategy configuration
+   - Backtesting capabilities
+
+5. **Exchange API Connection**
+   - Connection to multiple exchanges
+   - API key management
+   - Connection status monitoring
+   - Trading permissions management
+
+6. **Payment Integration**
+   - Subscription management
+   - Payment method storage
+   - Billing history
+   - Upgrade/downgrade options
+
+## Technical Stack
+
+- **Frontend**: React, TypeScript, Tailwind CSS, shadcn/ui
+- **State Management**: React Query, React Context
+- **Styling**: Tailwind CSS with custom design system
+- **Animations**: CSS animations, Framer Motion
+- **Charts**: Recharts for performance visualization
+
+## Target Users
+
+1. **Retail Traders**: Individual traders looking for automated trading solutions
+2. **Investment Enthusiasts**: Users with investment knowledge seeking to automate their strategies
+3. **Passive Investors**: Users looking for hands-off investment solutions
+
+## Success Metrics
+
+1. User acquisition and retention
+2. Strategy performance
+3. User engagement with different strategies
+4. Subscription conversion rate
+5. Average revenue per user

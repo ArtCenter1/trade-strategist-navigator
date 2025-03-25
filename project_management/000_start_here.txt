@@ -1,0 +1,60 @@
+
+# Trading Bot Project - Start Here
+
+Welcome to the Trading Bot project! This file serves as the entry point for any new sessions contributing to this project.
+
+## Project Structure
+
+- `/project_management/`: Contains all high-level project management files
+  - `project_overview.txt`: High-level description of the project
+  - `project_roadmap.txt`: Overall roadmap of the project
+  - `reference_files_index.txt`: Index of all reference files
+  - `current_phase.txt`: Information about the current phase, work completed, and next steps
+  - `Phase_X_checklist.txt`: Detailed checklist for each phase
+
+- `/references/`: Contains detailed information about each feature
+  - Each file summarizes the objective, work done, and work to be done
+
+- `/src/`: Main source code directory
+  - `/components/`: Reusable UI components
+  - `/pages/`: Main application pages
+  - `/hooks/`: Custom React hooks
+  - `/utils/`: Utility functions
+  - `/lib/`: Library code
+  - `/services/`: Service integrations (API connectors, etc.)
+  - `/assets/`: Static assets
+
+## Development Guidelines
+
+1. **Code Organization**: 
+   - Keep components small and focused
+   - Use TypeScript for type safety
+   - Follow the existing folder structure
+
+2. **Styling**:
+   - Use Tailwind CSS for styling
+   - Follow the design system defined in tailwind.config.ts
+
+3. **State Management**:
+   - Use React Query for server state
+   - Use React Context for global UI state
+   - Use React useState/useReducer for local component state
+
+4. **Project Management**:
+   - Always update the `current_phase.txt` file at the end of your session
+   - Check the current phase checklist to identify tasks
+   - When completing a feature, update the corresponding reference file
+
+## Continuity Between Sessions
+
+To maintain continuity between development sessions:
+
+1. Begin by reading `current_phase.txt` to understand the current state of the project
+2. Check the current phase checklist to identify what needs to be done
+3. Implement the required features or fixes
+4. Update the relevant reference files with your progress
+5. Update `current_phase.txt` with what you completed and what should be done next
+
+## Current Focus
+
+Please refer to `current_phase.txt` to see the current focus of development and what tasks need to be addressed next.

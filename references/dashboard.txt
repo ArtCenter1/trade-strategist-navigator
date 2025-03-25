@@ -1,0 +1,80 @@
+
+# Dashboard Reference
+
+## Overview
+The dashboard serves as the control center for users to monitor their trading activities, performance, and account status. It should provide clear insights at a glance while offering deeper analysis capabilities.
+
+## Objectives
+- Present key performance metrics clearly
+- Provide overview of active trading strategies
+- Show recent trading activity
+- Display account balances and portfolio status
+- Offer navigation to detailed sections
+
+## Design Guidelines
+- Clean, data-focused layout
+- Effective use of data visualization
+- Card-based components for modularity
+- Responsive design for all screen sizes
+- Clear visual hierarchy of information
+
+## Component Structure
+1. **Dashboard Header**
+   - User welcome message
+   - Date/time information
+   - Quick action buttons
+   - Notification indicator
+
+2. **Performance Overview**
+   - Total portfolio value
+   - Profit/loss indicators (daily, weekly, monthly)
+   - Performance charts (line or area charts)
+   - Key metrics (win rate, avg. return, etc.)
+
+3. **Active Strategies**
+   - List of running strategy instances
+   - Status indicators (active, paused, error)
+   - Quick performance snapshot
+   - Action buttons (edit, pause, stop)
+
+4. **Recent Trades**
+   - Table of most recent transactions
+   - Trade details (pair, size, price, P/L)
+   - Status indicators
+   - Pagination or "view all" link
+
+5. **Account Balances**
+   - Exchange account balances
+   - Asset allocation chart
+   - Available funds indicator
+   - Deposit/withdraw buttons
+
+6. **Notification Center**
+   - Recent system notifications
+   - Trade alerts
+   - Strategy status changes
+   - Account notifications
+
+7. **Quick Links**
+   - Navigation to detailed sections
+   - Shortcut buttons for common actions
+
+## Implementation Status
+- Planning phase
+- Not yet implemented
+
+## Next Steps
+1. Design dashboard layout
+2. Implement responsive grid system
+3. Create performance overview cards
+4. Develop chart components for data visualization
+5. Build active strategies component
+6. Create recent trades table
+7. Implement notification system
+
+## Technical Notes
+- Use Recharts for data visualization
+- Implement skeleton loaders for loading states
+- Consider virtual scrolling for large data sets
+- Use React Query for data fetching and caching
+- Ensure all dashboard elements update in real-time or with appropriate polling

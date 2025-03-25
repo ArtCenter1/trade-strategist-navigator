@@ -1,0 +1,64 @@
+
+# Authentication Reference
+
+## Overview
+The authentication system manages user registration, login, password recovery, and session management. It should be secure, user-friendly, and integrate with the overall platform design.
+
+## Objectives
+- Provide secure user authentication
+- Create smooth registration and login flows
+- Implement password recovery functionality
+- Maintain user sessions appropriately
+- Protect routes based on authentication status
+
+## Design Guidelines
+- Clean, focused forms with minimal distractions
+- Clear error messaging and validation feedback
+- Progress indicators for multi-step processes
+- Consistent styling with the overall platform
+
+## Component Structure
+1. **Registration Form**
+   - Email input
+   - Password input with strength indicator
+   - Confirm password
+   - Terms and conditions acceptance
+   - Submit button
+   - Link to login page
+
+2. **Login Form**
+   - Email/username input
+   - Password input
+   - "Remember me" option
+   - Submit button
+   - Links for password recovery and registration
+
+3. **Password Recovery**
+   - Email input for recovery link
+   - Email sent confirmation
+   - Password reset form
+   - Success confirmation
+
+4. **Authentication Guards**
+   - Protected route components
+   - Redirect logic for unauthenticated users
+   - Loading states during authentication checks
+
+## Implementation Status
+- Planning phase
+- Not yet implemented
+
+## Next Steps
+1. Design authentication forms
+2. Implement registration form with validation
+3. Create login functionality
+4. Add password recovery flow
+5. Set up route protection
+6. Implement session management
+
+## Technical Notes
+- Use JWT or similar token-based authentication
+- Store tokens securely (HTTP-only cookies)
+- Implement CSRF protection
+- Consider 2FA for future enhancement
+- Log authentication events for security monitoring

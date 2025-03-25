@@ -1,0 +1,37 @@
+
+# Reference Files Index
+
+This file provides a quick reference to all the feature reference files in the project, with a brief description of each.
+
+## Feature References
+
+1. **Landing Page (`/references/landing_page.txt`)**
+   - Landing page design and implementation details
+   - Hero section, feature showcases, and call-to-action elements
+
+2. **Authentication (`/references/authentication.txt`)**
+   - User registration, login, and authentication flows
+   - Security features and user session management
+
+3. **Dashboard (`/references/dashboard.txt`)**
+   - Main dashboard layout and components
+   - Performance metrics and data visualization
+
+4. **Strategy Selection (`/references/strategy_selection.txt`)**
+   - Strategy library and selection interface
+   - Strategy configuration and deployment
+
+5. **Exchange API (`/references/exchange_api.txt`)**
+   - Exchange connectivity and API integration
+   - API key management and security
+
+6. **Payment Integration (`/references/payment_integration.txt`)**
+   - Subscription plans and payment processing
+   - Billing management and invoice generation
+
+Each reference file contains:
+- Feature overview and objectives
+- Current implementation status
+- Design decisions and rationale
+- Technical implementation details
+- Next steps and pending tasks
