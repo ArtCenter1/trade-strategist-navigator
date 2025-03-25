@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/context/AuthContext";
 import { Button } from "@/components/ui/button";
 import { BarChart2, LogOut } from "lucide-react";
+import { ExchangeConnection } from "@/components/ExchangeConnection";
+import { ConnectedExchanges } from "@/components/ConnectedExchanges";
 
 const Dashboard = () => {
   const { user, loading, signOut } = useAuth();
@@ -53,14 +55,15 @@ const Dashboard = () => {
       <main className="flex-1 p-6">
         <div className="max-w-7xl mx-auto">
           <h1 className="text-3xl font-bold mb-6">Trading Dashboard</h1>
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            <div className="bg-card p-6 rounded-lg border">
-              <h2 className="text-xl font-semibold mb-4">Get Started</h2>
-              <p className="text-muted-foreground mb-4">
-                Connect your first exchange to start setting up trading strategies.
-              </p>
-              <Button className="w-full">Connect Exchange</Button>
-            </div>
+          
+          {/* Exchange Connection Section */}
+          <h2 className="text-2xl font-semibold mb-4">Exchange Connections</h2>
+          <div className="mb-8">
+            <ConnectedExchanges />
+          </div>
+          
+          <div className="grid gap-6 md:grid-cols-2">
+            <ExchangeConnection />
             
             <div className="bg-card p-6 rounded-lg border">
               <h2 className="text-xl font-semibold mb-4">Choose Strategy</h2>
@@ -73,14 +76,6 @@ const Dashboard = () => {
               >
                 View Strategies
               </Button>
-            </div>
-            
-            <div className="bg-card p-6 rounded-lg border">
-              <h2 className="text-xl font-semibold mb-4">Upgrade Plan</h2>
-              <p className="text-muted-foreground mb-4">
-                Get access to premium features and more trading strategies.
-              </p>
-              <Button className="w-full">See Plans</Button>
             </div>
           </div>
         </div>
