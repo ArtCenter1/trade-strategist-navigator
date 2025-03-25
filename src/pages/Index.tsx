@@ -1,11 +1,14 @@
 
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ChevronRight, ArrowRight, BarChart2, Lock, Zap, Shield } from 'lucide-react';
 import { Button } from "@/components/ui/button";
+import { useAuth } from '@/context/AuthContext';
 
 const Index = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const { user } = useAuth();
 
   useEffect(() => {
     setIsVisible(true);
@@ -27,8 +30,20 @@ const Index = () => {
           <a href="#pricing" className="text-sm font-medium hover:text-trading-teal transition-standard">Pricing</a>
         </nav>
         <div className="flex items-center gap-4">
-          <Button variant="ghost" className="hidden md:flex">Sign In</Button>
-          <Button className="bg-trading-navy hover:bg-trading-navy/90 text-white">Get Started</Button>
+          {user ? (
+            <Link to="/dashboard">
+              <Button className="bg-trading-navy hover:bg-trading-navy/90 text-white">Dashboard</Button>
+            </Link>
+          ) : (
+            <>
+              <Link to="/auth">
+                <Button variant="ghost" className="hidden md:flex">Sign In</Button>
+              </Link>
+              <Link to="/auth">
+                <Button className="bg-trading-navy hover:bg-trading-navy/90 text-white">Get Started</Button>
+              </Link>
+            </>
+          )}
         </div>
       </header>
 
