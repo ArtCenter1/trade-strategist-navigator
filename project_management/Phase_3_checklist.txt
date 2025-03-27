@@ -1,0 +1,66 @@
+
+# Phase 3 Checklist: Dashboard and Strategy Selection
+
+## Phase Objectives
+- Create the main dashboard interface for users
+- Implement trading strategy selection
+- Set up exchange API connections
+- Build the initial performance metrics visualization
+
+## Tasks
+
+### Dashboard Layout
+- [ ] Implement dashboard header with navigation
+- [ ] Create sidebar navigation component
+- [ ] Design responsive dashboard layout
+- [ ] Implement main dashboard overview section
+- [ ] Add dashboard welcome message and onboarding hints
+
+### Performance Metrics
+- [ ] Design performance overview cards
+- [ ] Implement placeholder charts for future metrics
+- [ ] Create portfolio value display
+- [ ] Add profit/loss indicators
+- [ ] Build key metrics summary section
+
+### Strategy Selection
+- [ ] Create strategy listing page
+- [ ] Implement strategy cards
+- [ ] Build strategy details page
+- [ ] Create strategy comparison tool (optional)
+- [ ] Implement strategy configuration interface
+- [ ] Add strategy deployment functionality
+
+### Exchange Connection
+- [ ] Implement exchange selection interface
+- [ ] Create API key input forms
+- [ ] Build connection testing functionality
+- [ ] Add connection status indicators
+- [ ] Implement exchange account summary view
+- [ ] Create connected exchanges list
+
+### User Profile Integration
+- [ ] Display user information in dashboard
+- [ ] Create account settings section
+- [ ] Implement preferences management
+- [ ] Add notification settings
+
+### Navigation System
+- [ ] Create navigation links between dashboard sections
+- [ ] Implement breadcrumb navigation
+- [ ] Add page transitions
+- [ ] Set up dashboard-specific routes
+
+## Design Goals
+- Follow the established design system
+- Ensure responsive behavior on all screen sizes
+- Maintain consistent UI patterns
+- Use appropriate data visualization for metrics
+- Ensure clear user flows between sections
+
+## Technical Considerations
+- Use React Query for data fetching
+- Implement proper loading states
+- Create skeleton loaders for data-dependent components
+- Follow component composition best practices
+- Set up proper TypeScript interfaces for all components
