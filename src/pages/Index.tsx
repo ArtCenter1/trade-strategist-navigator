@@ -3,6 +3,10 @@ import React from 'react';
 import { NavigationHeader } from '@/components/layout/NavigationHeader';
 import { HeroSection } from '@/components/landing/HeroSection';
 import { FeaturesSection } from '@/components/landing/FeaturesSection';
+import { HowItWorksSection } from '@/components/landing/HowItWorksSection';
+import { PricingSection } from '@/components/landing/PricingSection';
+import { TestimonialsSection } from '@/components/landing/TestimonialsSection';
+import { Footer } from '@/components/layout/Footer';
 
 const Index = () => {
   return (
@@ -11,9 +15,11 @@ const Index = () => {
       <main className="flex-1">
         <HeroSection />
         <FeaturesSection />
-        {/* Additional sections can be added here */}
+        <HowItWorksSection />
+        <PricingSection />
+        <TestimonialsSection />
       </main>
-      {/* Footer component will be added later */}
+      <Footer />
     </div>
   );
 };
