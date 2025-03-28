@@ -4,7 +4,7 @@ import { useAuth } from "@/context/AuthContext";
 import { Strategy } from "@/components/Strategy";
 import { AlertCircle } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { NavigationHeader } from "@/components/layout/NavigationHeader";
+import { DashboardLayout } from "@/components/layout/DashboardLayout";
 import type { Strategy as StrategyType } from "@/components/Strategy";
 
 const strategyData: StrategyType[] = [
@@ -83,40 +83,34 @@ const StrategySelection = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
-      <NavigationHeader />
-
-      <main className="flex-1 p-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="space-y-6">
-            <div>
-              <h1 className="text-3xl font-bold mb-2">Trading Strategies</h1>
-              <p className="text-muted-foreground">
-                Select and configure a trading strategy to deploy on your connected exchanges.
-              </p>
-            </div>
-
-            <Alert>
-              <AlertCircle className="h-4 w-4" />
-              <AlertTitle>Information</AlertTitle>
-              <AlertDescription>
-                Premium strategies are available with a paid subscription. Upgrade your plan to access all strategies.
-              </AlertDescription>
-            </Alert>
-
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {strategyData.map((strategy) => (
-                <Strategy 
-                  key={strategy.id}
-                  strategy={strategy}
-                  onSelect={() => navigate(`/strategies/${strategy.id}`)}
-                />
-              ))}
-            </div>
-          </div>
+    <DashboardLayout>
+      <div className="space-y-6">
+        <div>
+          <h1 className="text-3xl font-bold mb-2">Trading Strategies</h1>
+          <p className="text-muted-foreground">
+            Select and configure a trading strategy to deploy on your connected exchanges.
+          </p>
         </div>
-      </main>
-    </div>
+
+        <Alert>
+          <AlertCircle className="h-4 w-4" />
+          <AlertTitle>Information</AlertTitle>
+          <AlertDescription>
+            Premium strategies are available with a paid subscription. Upgrade your plan to access all strategies.
+          </AlertDescription>
+        </Alert>
+
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {strategyData.map((strategy) => (
+            <Strategy 
+              key={strategy.id}
+              strategy={strategy}
+              onSelect={() => navigate(`/strategies/${strategy.id}`)}
+            />
+          ))}
+        </div>
+      </div>
+    </DashboardLayout>
   );
 };
 
