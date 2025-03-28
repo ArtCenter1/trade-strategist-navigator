@@ -31,6 +31,9 @@ const App = () => (
             <Route path="/strategies/:id" element={<StrategyDetail />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/performance" element={<Dashboard />} /> {/* Placeholder */}
+            <Route path="/exchanges" element={<Dashboard />} /> {/* Placeholder */}
+            <Route path="/portfolio" element={<Dashboard />} /> {/* Placeholder */}
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
