@@ -1,11 +1,11 @@
 
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/context/AuthContext";
-import { Button } from "@/components/ui/button";
 import { NavigationHeader } from "@/components/layout/NavigationHeader";
-import { ExchangeConnection } from "@/components/ExchangeConnection";
-import { ConnectedExchanges } from "@/components/ConnectedExchanges";
+import { PerformanceMetrics } from "@/components/dashboard/PerformanceMetrics";
+import { AccountSummary } from "@/components/dashboard/AccountSummary";
+import { DeployStrategy } from "@/components/dashboard/DeployStrategy";
 
 const Dashboard = () => {
   const { user, loading } = useAuth();
@@ -20,7 +20,7 @@ const Dashboard = () => {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="h-8 w-8 border-4 border-trading-navy border-t-transparent rounded-full animate-spin"></div>
+        <div className="h-8 w-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
       </div>
     );
   }
@@ -28,33 +28,21 @@ const Dashboard = () => {
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <NavigationHeader />
-
-      <main className="flex-1 p-6">
-        <div className="max-w-7xl mx-auto">
-          <h1 className="text-3xl font-bold mb-6">Trading Dashboard</h1>
-          
-          {/* Exchange Connection Section */}
-          <h2 className="text-2xl font-semibold mb-4">Exchange Connections</h2>
-          <div className="mb-8">
-            <ConnectedExchanges />
+      
+      <main className="flex-1 p-4 md:p-6">
+        <div className="max-w-7xl mx-auto space-y-8">
+          <div>
+            <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
+            <p className="text-muted-foreground">
+              Welcome back, {user?.email}. Here's your trading overview.
+            </p>
           </div>
           
-          <div className="grid gap-6 md:grid-cols-2">
-            <ExchangeConnection />
-            
-            <div className="bg-card p-6 rounded-lg border">
-              <h2 className="text-xl font-semibold mb-4">Choose Strategy</h2>
-              <p className="text-muted-foreground mb-4">
-                Browse our library of proven trading strategies.
-              </p>
-              <Button 
-                className="w-full"
-                onClick={() => navigate('/strategies')}
-              >
-                View Strategies
-              </Button>
-            </div>
-          </div>
+          <PerformanceMetrics />
+          
+          <AccountSummary />
+          
+          <DeployStrategy />
         </div>
       </main>
     </div>

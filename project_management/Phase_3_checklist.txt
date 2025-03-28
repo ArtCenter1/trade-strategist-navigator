@@ -14,14 +14,14 @@
 - [ ] Create sidebar navigation component
 - [x] Design responsive dashboard layout
 - [x] Implement main dashboard overview section
-- [ ] Add dashboard welcome message and onboarding hints
+- [x] Add dashboard welcome message and onboarding hints
 
 ### Performance Metrics
-- [ ] Design performance overview cards
-- [ ] Implement placeholder charts for future metrics
-- [ ] Create portfolio value display
-- [ ] Add profit/loss indicators
-- [ ] Build key metrics summary section
+- [x] Design performance overview cards
+- [x] Implement placeholder charts for future metrics
+- [x] Create portfolio value display
+- [x] Add profit/loss indicators
+- [x] Build key metrics summary section
 
 ### Strategy Selection
 - [x] Create strategy listing page
@@ -29,14 +29,14 @@
 - [x] Build strategy details page
 - [ ] Create strategy comparison tool (optional)
 - [x] Implement strategy configuration interface
-- [ ] Add strategy deployment functionality
+- [x] Add strategy deployment functionality
 
 ### Exchange Connection
 - [x] Implement exchange selection interface
 - [x] Create API key input forms
 - [x] Build connection testing functionality
 - [x] Add connection status indicators
-- [ ] Implement exchange account summary view
+- [x] Implement exchange account summary view
 - [x] Create connected exchanges list
 
 ### User Profile Integration
