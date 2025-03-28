@@ -95,3 +95,6 @@ export const getStrategyDetails = (id: string): StrategyDetails | null => {
 
   return strategies[id] || null;
 };
+
+// Add the missing getStrategyById function by aliasing getStrategyDetails
+export const getStrategyById = getStrategyDetails;
