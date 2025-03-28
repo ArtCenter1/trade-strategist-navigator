@@ -4,6 +4,7 @@ import { useAuth } from "@/context/AuthContext";
 import { Strategy } from "@/components/Strategy";
 import { AlertCircle } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { NavigationHeader } from "@/components/layout/NavigationHeader";
 import type { Strategy as StrategyType } from "@/components/Strategy";
 
 const strategyData: StrategyType[] = [
@@ -83,42 +84,7 @@ const StrategySelection = () => {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
-      <header className="w-full px-4 py-4 border-b flex items-center justify-between bg-card">
-        <div className="flex items-center gap-2">
-          <div className="h-8 w-8 rounded-md bg-trading-navy text-white flex items-center justify-center">
-            <svg 
-              xmlns="http://www.w3.org/2000/svg" 
-              width="20" 
-              height="20" 
-              viewBox="0 0 24 24" 
-              fill="none" 
-              stroke="currentColor" 
-              strokeWidth="2" 
-              strokeLinecap="round" 
-              strokeLinejoin="round" 
-            >
-              <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
-              <polyline points="16 7 22 7 22 13"></polyline>
-            </svg>
-          </div>
-          <span className="font-semibold text-lg">TradingBot</span>
-        </div>
-
-        <div className="flex items-center gap-4">
-          <button 
-            onClick={() => navigate('/dashboard')}
-            className="text-sm font-medium hover:underline"
-          >
-            Dashboard
-          </button>
-          <button 
-            onClick={() => navigate('/strategies')}
-            className="text-sm font-medium text-primary hover:underline"
-          >
-            Strategies
-          </button>
-        </div>
-      </header>
+      <NavigationHeader />
 
       <main className="flex-1 p-6">
         <div className="max-w-7xl mx-auto">

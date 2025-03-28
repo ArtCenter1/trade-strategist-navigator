@@ -3,12 +3,12 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/context/AuthContext";
 import { Button } from "@/components/ui/button";
-import { BarChart2, LogOut } from "lucide-react";
+import { NavigationHeader } from "@/components/layout/NavigationHeader";
 import { ExchangeConnection } from "@/components/ExchangeConnection";
 import { ConnectedExchanges } from "@/components/ConnectedExchanges";
 
 const Dashboard = () => {
-  const { user, loading, signOut } = useAuth();
+  const { user, loading } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -16,11 +16,6 @@ const Dashboard = () => {
       navigate("/auth");
     }
   }, [user, loading, navigate]);
-
-  const handleSignOut = async () => {
-    await signOut();
-    navigate("/");
-  };
 
   if (loading) {
     return (
@@ -32,25 +27,7 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
-      <header className="w-full px-4 py-4 border-b flex items-center justify-between bg-card">
-        <div className="flex items-center gap-2">
-          <div className="h-8 w-8 rounded-md bg-trading-navy text-white flex items-center justify-center">
-            <BarChart2 className="h-5 w-5" />
-          </div>
-          <span className="font-semibold text-lg">TradingBot</span>
-        </div>
-
-        <div className="flex items-center gap-3">
-          <div className="text-sm">
-            <span className="text-muted-foreground mr-1">Signed in as:</span>
-            <span className="font-medium">{user?.email}</span>
-          </div>
-          <Button variant="outline" size="sm" onClick={handleSignOut}>
-            <LogOut className="h-4 w-4 mr-2" />
-            Sign Out
-          </Button>
-        </div>
-      </header>
+      <NavigationHeader />
 
       <main className="flex-1 p-6">
         <div className="max-w-7xl mx-auto">

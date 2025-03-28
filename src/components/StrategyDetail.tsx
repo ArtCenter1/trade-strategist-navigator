@@ -1,102 +1,92 @@
 
-import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { Button } from "@/components/ui/button";
+import { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { 
-  BarChart2, 
-  Settings, 
-  Info
-} from "lucide-react";
-import { StrategyHeader } from "./strategy/StrategyHeader";
-import { StrategyInfoCard } from "./strategy/StrategyInfoCard";
-import { StrategyOverviewTab } from "./strategy/tabs/StrategyOverviewTab";
-import { StrategyPerformanceTab } from "./strategy/tabs/StrategyPerformanceTab";
-import { StrategyConfigurationTab } from "./strategy/tabs/StrategyConfigurationTab";
-import { getStrategyDetails } from "./strategy/StrategyDetailData";
-import type { StrategyDetails } from "./strategy/types";
+import { NavigationHeader } from "@/components/layout/NavigationHeader";
+import { useAuth } from "@/context/AuthContext";
+import { StrategyHeader } from "@/components/strategy/StrategyHeader";
+import { StrategyInfoCard } from "@/components/strategy/StrategyInfoCard";
+import { StrategyOverviewTab } from "@/components/strategy/tabs/StrategyOverviewTab";
+import { StrategyPerformanceTab } from "@/components/strategy/tabs/StrategyPerformanceTab";
+import { StrategyConfigurationTab } from "@/components/strategy/tabs/StrategyConfigurationTab";
+import { getStrategyById } from "@/components/strategy/StrategyDetailData";
+import { useToast } from "@/hooks/use-toast";
 
 export function StrategyDetail() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const { user, loading } = useAuth();
+  const { toast } = useToast();
   const [activeTab, setActiveTab] = useState("overview");
   
-  const strategy = id ? getStrategyDetails(id) : null;
-
-  if (!strategy) {
+  // Fetch strategy data
+  const strategy = id ? getStrategyById(id) : null;
+  
+  // Authentication check
+  useEffect(() => {
+    if (!loading && !user) {
+      navigate("/auth");
+    }
+  }, [user, loading, navigate]);
+  
+  // Non-existent strategy check
+  useEffect(() => {
+    if (!loading && !strategy) {
+      navigate("/strategies");
+      toast({
+        title: "Strategy not found",
+        description: "The requested strategy does not exist.",
+        variant: "destructive"
+      });
+    }
+  }, [strategy, loading, navigate, toast]);
+  
+  if (loading || !strategy) {
     return (
-      <div className="flex flex-col items-center justify-center h-screen">
-        <h1 className="text-xl font-bold mb-4">Strategy not found</h1>
-        <Button onClick={() => navigate('/strategies')}>
-          Back to Strategies
-        </Button>
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="h-8 w-8 border-4 border-trading-navy border-t-transparent rounded-full animate-spin"></div>
       </div>
     );
   }
-
-  const handleDeployStrategy = () => {
-    // Here you would typically integrate with your backend
-    // to deploy the strategy with the configured parameters
-    console.log("Deploying strategy:", strategy.id);
-    
-    // Navigate back to dashboard or to a confirmation page
-    navigate('/dashboard');
+  
+  const handleSaveConfiguration = () => {
+    toast({
+      title: "Configuration saved",
+      description: "Your strategy configuration has been saved successfully."
+    });
   };
-
+  
   return (
     <div className="min-h-screen bg-background flex flex-col">
-      <StrategyHeader strategy={strategy} />
-
+      <NavigationHeader />
+      
       <main className="flex-1 p-6">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-7xl mx-auto">
+          <StrategyHeader strategy={strategy} />
           <StrategyInfoCard strategy={strategy} />
-
-          <Tabs 
-            defaultValue="overview" 
-            value={activeTab}
-            onValueChange={setActiveTab}
-            className="mt-6"
-          >
-            <TabsList className="grid w-full grid-cols-3">
-              <TabsTrigger value="overview" className="flex items-center">
-                <Info className="h-4 w-4 mr-2" />
-                Overview
-              </TabsTrigger>
-              <TabsTrigger value="performance" className="flex items-center">
-                <BarChart2 className="h-4 w-4 mr-2" />
-                Performance
-              </TabsTrigger>
-              <TabsTrigger value="configuration" className="flex items-center">
-                <Settings className="h-4 w-4 mr-2" />
-                Configuration
-              </TabsTrigger>
+          
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="mb-8">
+            <TabsList className="grid w-full grid-cols-3 mb-8">
+              <TabsTrigger value="overview">Overview</TabsTrigger>
+              <TabsTrigger value="performance">Performance</TabsTrigger>
+              <TabsTrigger value="configuration">Configuration</TabsTrigger>
             </TabsList>
             
-            <TabsContent value="overview" className="mt-4">
-              <StrategyOverviewTab strategy={strategy as StrategyDetails} />
+            <TabsContent value="overview">
+              <StrategyOverviewTab strategy={strategy} />
             </TabsContent>
             
-            <TabsContent value="performance" className="mt-4">
-              <StrategyPerformanceTab strategy={strategy as StrategyDetails} />
+            <TabsContent value="performance">
+              <StrategyPerformanceTab strategy={strategy} />
             </TabsContent>
             
-            <TabsContent value="configuration" className="mt-4">
+            <TabsContent value="configuration">
               <StrategyConfigurationTab 
-                strategy={strategy as StrategyDetails} 
-                onSaveConfiguration={() => setActiveTab("overview")}
+                strategy={strategy} 
+                onSaveConfiguration={handleSaveConfiguration} 
               />
             </TabsContent>
           </Tabs>
-
-          <div className="mt-8 flex justify-end">
-            <Button 
-              size="lg" 
-              onClick={handleDeployStrategy}
-              disabled={strategy.isPremium}
-            >
-              {strategy.isPremium ? 'Upgrade to Deploy' : 'Deploy Strategy'}
-            </Button>
-          </div>
         </div>
       </main>
     </div>
