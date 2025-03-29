@@ -4,8 +4,9 @@ import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { BarChart2, LogIn, User, Mail, Lock, ArrowRight } from "lucide-react";
+import { LogIn, User, Mail, Lock } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { NavigationHeader } from "@/components/layout/NavigationHeader";
 
 const Auth = () => {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -62,14 +63,7 @@ const Auth = () => {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
-      <header className="w-full px-4 py-6 flex items-center justify-between max-w-7xl mx-auto">
-        <div className="flex items-center gap-2">
-          <div className="h-10 w-10 rounded-md bg-trading-navy text-white flex items-center justify-center">
-            <BarChart2 className="h-6 w-6" />
-          </div>
-          <span className="font-semibold text-xl">TradingBot</span>
-        </div>
-      </header>
+      <NavigationHeader />
 
       <main className="flex-1 flex items-center justify-center p-4">
         <div className="w-full max-w-md">
@@ -79,7 +73,7 @@ const Auth = () => {
             </h1>
             <p className="text-muted-foreground">
               {isSignUp
-                ? "Sign up to start using TradingBot"
+                ? "Sign up to start using OmniBot"
                 : "Sign in to access your trading dashboard"}
             </p>
           </div>

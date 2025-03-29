@@ -38,14 +38,14 @@ export function NavigationHeader() {
         <div className="h-8 w-8 rounded-md bg-trading-navy text-white flex items-center justify-center">
           <BarChart2 className="h-5 w-5" />
         </div>
-        <a href="/" className="font-semibold text-lg">OmniBot</a>
+        <Link to="/" className="font-semibold text-lg">OmniBot</Link>
       </div>
 
       <nav className="flex items-center gap-4">
         {user ? (
           <>
-            <a href="/dashboard" className="text-sm font-medium hover:text-primary">Dashboard</a>
-            <a href="/strategies" className="text-sm font-medium hover:text-primary">Strategies</a>
+            <Link to="/dashboard" className="text-sm font-medium hover:text-primary">Dashboard</Link>
+            <Link to="/strategies" className="text-sm font-medium hover:text-primary">Strategies</Link>
             
             <div className="flex items-center gap-3">
               <div className="text-sm hidden md:block">

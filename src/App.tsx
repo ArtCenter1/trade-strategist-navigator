@@ -13,6 +13,7 @@ import StrategySelection from "./pages/StrategySelection";
 import { StrategyDetail } from "./components/StrategyDetail";
 import Settings from "./pages/Settings";
 import Profile from "./pages/Profile";
+import { DashboardLayout } from "./components/layout/DashboardLayout";
 
 const queryClient = new QueryClient();
 
@@ -26,15 +27,18 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/auth" element={<Auth />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/strategies" element={<StrategySelection />} />
-            <Route path="/strategies/:id" element={<StrategyDetail />} />
-            <Route path="/settings" element={<Settings />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/performance" element={<Dashboard />} /> {/* Placeholder */}
-            <Route path="/exchanges" element={<Dashboard />} /> {/* Placeholder */}
-            <Route path="/portfolio" element={<Dashboard />} /> {/* Placeholder */}
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            
+            {/* Dashboard Routes with DashboardLayout */}
+            <Route path="/dashboard" element={<DashboardLayout><Dashboard /></DashboardLayout>} />
+            <Route path="/strategies" element={<DashboardLayout><StrategySelection /></DashboardLayout>} />
+            <Route path="/strategies/:id" element={<DashboardLayout><StrategyDetail /></DashboardLayout>} />
+            <Route path="/settings" element={<DashboardLayout><Settings /></DashboardLayout>} />
+            <Route path="/profile" element={<DashboardLayout><Profile /></DashboardLayout>} />
+            <Route path="/performance" element={<DashboardLayout><Dashboard /></DashboardLayout>} /> {/* Placeholder */}
+            <Route path="/exchanges" element={<DashboardLayout><Dashboard /></DashboardLayout>} /> {/* Placeholder */}
+            <Route path="/portfolio" element={<DashboardLayout><Dashboard /></DashboardLayout>} /> {/* Placeholder */}
+            
+            {/* Catch-all route */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
