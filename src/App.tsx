@@ -30,14 +30,62 @@ function AnimatedRoutes() {
         <Route path="/auth" element={<PageTransition><Auth /></PageTransition>} />
         
         {/* Dashboard Routes with DashboardLayout */}
-        <Route path="/dashboard" element={<DashboardLayout><PageTransition><Dashboard /></PageTransition></DashboardLayout>} />
-        <Route path="/strategies" element={<DashboardLayout><PageTransition><StrategySelection /></PageTransition></DashboardLayout>} />
-        <Route path="/strategies/:id" element={<DashboardLayout><PageTransition><StrategyDetail /></PageTransition></DashboardLayout>} />
-        <Route path="/settings" element={<DashboardLayout><PageTransition><Settings /></PageTransition></DashboardLayout>} />
-        <Route path="/profile" element={<DashboardLayout><PageTransition><Profile /></PageTransition></DashboardLayout>} />
-        <Route path="/performance" element={<DashboardLayout><PageTransition><Dashboard /></PageTransition></DashboardLayout>} /> {/* Placeholder */}
-        <Route path="/exchanges" element={<DashboardLayout><PageTransition><Dashboard /></PageTransition></DashboardLayout>} /> {/* Placeholder */}
-        <Route path="/portfolio" element={<DashboardLayout><PageTransition><Dashboard /></PageTransition></DashboardLayout>} /> {/* Placeholder */}
+        <Route path="/dashboard" element={
+          <DashboardLayout>
+            <PageTransition>
+              <Dashboard />
+            </PageTransition>
+          </DashboardLayout>
+        } />
+        <Route path="/strategies" element={
+          <DashboardLayout>
+            <PageTransition>
+              <StrategySelection />
+            </PageTransition>
+          </DashboardLayout>
+        } />
+        <Route path="/strategies/:id" element={
+          <DashboardLayout>
+            <PageTransition>
+              <StrategyDetail />
+            </PageTransition>
+          </DashboardLayout>
+        } />
+        <Route path="/settings" element={
+          <DashboardLayout>
+            <PageTransition>
+              <Settings />
+            </PageTransition>
+          </DashboardLayout>
+        } />
+        <Route path="/profile" element={
+          <DashboardLayout>
+            <PageTransition>
+              <Profile />
+            </PageTransition>
+          </DashboardLayout>
+        } />
+        <Route path="/performance" element={
+          <DashboardLayout>
+            <PageTransition>
+              <Dashboard />
+            </PageTransition>
+          </DashboardLayout>
+        } />
+        <Route path="/exchanges" element={
+          <DashboardLayout>
+            <PageTransition>
+              <Dashboard />
+            </PageTransition>
+          </DashboardLayout>
+        } />
+        <Route path="/portfolio" element={
+          <DashboardLayout>
+            <PageTransition>
+              <Dashboard />
+            </PageTransition>
+          </DashboardLayout>
+        } />
         
         {/* Catch-all route */}
         <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />

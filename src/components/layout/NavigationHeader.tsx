@@ -38,7 +38,7 @@ export function NavigationHeader() {
         <div className="h-8 w-8 rounded-md bg-trading-navy text-white flex items-center justify-center">
           <BarChart2 className="h-5 w-5" />
         </div>
-        <Link to="/" className="font-semibold text-lg">OmniBot</Link>
+        <Link to="/" className="font-semibold text-lg">OmniTrade</Link>
       </div>
 
       <nav className="flex items-center gap-4">

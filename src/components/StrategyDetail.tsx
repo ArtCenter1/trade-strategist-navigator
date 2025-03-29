@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useAuth } from "@/context/AuthContext";
-import { DashboardLayout } from "@/components/layout/DashboardLayout";
 import { StrategyHeader } from "@/components/strategy/StrategyHeader";
 import { StrategyInfoCard } from "@/components/strategy/StrategyInfoCard";
 import { StrategyOverviewTab } from "@/components/strategy/tabs/StrategyOverviewTab";
@@ -49,42 +48,33 @@ export function StrategyDetail() {
     );
   }
   
-  const handleSaveConfiguration = () => {
-    toast({
-      title: "Configuration saved",
-      description: "Your strategy configuration has been saved successfully."
-    });
-  };
-  
   return (
-    <DashboardLayout>
-      <div>
-        <StrategyHeader strategy={strategy} />
-        <StrategyInfoCard strategy={strategy} />
+    <div>
+      <StrategyHeader strategy={strategy} />
+      <StrategyInfoCard strategy={strategy} />
+      
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="mb-8">
+        <TabsList className="grid w-full grid-cols-3 mb-8">
+          <TabsTrigger value="overview">Overview</TabsTrigger>
+          <TabsTrigger value="performance">Performance</TabsTrigger>
+          <TabsTrigger value="configuration">Configuration</TabsTrigger>
+        </TabsList>
         
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="mb-8">
-          <TabsList className="grid w-full grid-cols-3 mb-8">
-            <TabsTrigger value="overview">Overview</TabsTrigger>
-            <TabsTrigger value="performance">Performance</TabsTrigger>
-            <TabsTrigger value="configuration">Configuration</TabsTrigger>
-          </TabsList>
-          
-          <TabsContent value="overview">
-            <StrategyOverviewTab strategy={strategy} />
-          </TabsContent>
-          
-          <TabsContent value="performance">
-            <StrategyPerformanceTab strategy={strategy} />
-          </TabsContent>
-          
-          <TabsContent value="configuration">
-            <StrategyConfigurationTab 
-              strategy={strategy} 
-              onSaveConfiguration={handleSaveConfiguration} 
-            />
-          </TabsContent>
-        </Tabs>
-      </div>
-    </DashboardLayout>
+        <TabsContent value="overview">
+          <StrategyOverviewTab strategy={strategy} />
+        </TabsContent>
+        
+        <TabsContent value="performance">
+          <StrategyPerformanceTab strategy={strategy} />
+        </TabsContent>
+        
+        <TabsContent value="configuration">
+          <StrategyConfigurationTab 
+            strategy={strategy} 
+            onSaveConfiguration={handleSaveConfiguration} 
+          />
+        </TabsContent>
+      </Tabs>
+    </div>
   );
 }

@@ -37,7 +37,7 @@ export function DashboardSidebar({
           <div className="h-8 w-8 rounded-md bg-trading-navy text-white flex items-center justify-center shadow-md">
             <LayoutDashboard className="h-5 w-5" />
           </div>
-          <span className="font-semibold text-lg">OmniBot</span>
+          <span className="font-semibold text-lg">OmniTrade</span>
         </div>
       </SidebarHeader>
       
