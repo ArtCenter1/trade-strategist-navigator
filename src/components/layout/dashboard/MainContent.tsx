@@ -1,5 +1,5 @@
 
-import React from "react";
+import { DashboardBreadcrumbs } from "./DashboardBreadcrumbs";
 
 interface MainContentProps {
   children: React.ReactNode;
@@ -7,10 +7,9 @@ interface MainContentProps {
 
 export function MainContent({ children }: MainContentProps) {
   return (
-    <main className="flex-1 overflow-auto">
-      <div className="container max-w-7xl mx-auto p-4 md:p-6">
-        {children}
-      </div>
+    <main className="flex-1 overflow-auto p-6">
+      <DashboardBreadcrumbs />
+      {children}
     </main>
   );
 }
