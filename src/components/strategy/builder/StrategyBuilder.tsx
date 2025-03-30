@@ -7,6 +7,7 @@ import { RuleBuilder } from "./RuleBuilder";
 import { BasicSettingsTab } from "./form/BasicSettingsTab";
 import { FormNavigation } from "./form/FormNavigation";
 import { useStrategyForm } from "./hooks/useStrategyForm";
+import { BacktestingTab } from "./form/BacktestingTab";
 
 export function StrategyBuilder() {
   const {
@@ -32,10 +33,11 @@ export function StrategyBuilder() {
       </CardHeader>
       <CardContent>
         <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="grid w-full grid-cols-3 mb-6">
+          <TabsList className="grid w-full grid-cols-4 mb-6">
             <TabsTrigger value="basic">Basic Settings</TabsTrigger>
             <TabsTrigger value="indicators">Indicators</TabsTrigger>
             <TabsTrigger value="rules">Trading Rules</TabsTrigger>
+            <TabsTrigger value="backtest">Backtest</TabsTrigger>
           </TabsList>
           
           <Form {...form}>
@@ -56,6 +58,14 @@ export function StrategyBuilder() {
                   rules={rules}
                   setRules={setRules}
                   selectedIndicators={selectedIndicators}
+                />
+              </TabsContent>
+              
+              <TabsContent value="backtest">
+                <BacktestingTab 
+                  strategy={form.getValues()}
+                  selectedIndicators={selectedIndicators}
+                  rules={rules}
                 />
               </TabsContent>
               

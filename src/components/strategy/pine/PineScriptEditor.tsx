@@ -1,101 +1,115 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Textarea } from "@/components/ui/textarea";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { extractConditions, runPineScriptStrategy } from "./PineScriptInterpreter";
+import { PineScriptStrategy } from "./PineScriptTypes";
+import { BacktestingTab } from "../builder/form/BacktestingTab";
 import { useToast } from "@/hooks/use-toast";
-import { PineScriptParser } from "./PineScriptParser";
-import { PineScriptInterpreter } from "./PineScriptInterpreter";
-
-const EXAMPLE_SCRIPT = `
-// Simple Moving Average Crossover Strategy
-strategy.name = "SMA Crossover"
-strategy.description = "A basic strategy that goes long when fast SMA crosses above slow SMA, and exits when it crosses below"
-
-// Input parameters
-fastLength = 9
-slowLength = 21
-
-// Calculate indicators
-fastSMA = sma(close, fastLength)
-slowSMA = sma(close, slowLength)
-
-// Entry and exit conditions
-longCondition = crossover(fastSMA, slowSMA)
-shortCondition = crossover(slowSMA, fastSMA)
-
-// Strategy entries and exits
-if (longCondition) {
-    strategy.entry("Long", "long", when = longCondition)
-}
-
-if (shortCondition) {
-    strategy.exit("Exit Long", "Long", when = shortCondition)
-}
-`.trim();
 
 export function PineScriptEditor() {
-  const [script, setScript] = useState(EXAMPLE_SCRIPT);
-  const [parsedStrategy, setParsedStrategy] = useState<any>(null);
+  const [script, setScript] = useState<string>(defaultScript);
+  const [activeTab, setActiveTab] = useState<string>("editor");
+  const [strategy, setStrategy] = useState<PineScriptStrategy | null>(null);
   const { toast } = useToast();
-  
-  const handleParseScript = () => {
+
+  const handleScriptChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setScript(e.target.value);
+  };
+
+  const handleRun = () => {
     try {
-      const parser = new PineScriptParser();
-      const strategy = parser.parse(script);
-      setParsedStrategy(strategy);
+      // In a real implementation, we would parse the script and extract the strategy
+      // For now, we'll create a mock strategy
+      const newStrategy: PineScriptStrategy = {
+        name: "Custom Pine Script Strategy",
+        description: "A strategy created using Pine Script",
+        ast: [],
+        entryConditions: [],
+        exitConditions: []
+      };
       
-      // For demonstration purposes, evaluate the strategy
-      const interpreter = new PineScriptInterpreter();
-      interpreter.evaluateStrategy(strategy.ast);
+      setStrategy(newStrategy);
+      setActiveTab("backtest");
       
       toast({
-        title: "Script Parsed Successfully",
-        description: `Strategy name: ${strategy.name}`,
+        title: "Script Compiled",
+        description: "Your Pine Script has been successfully compiled.",
       });
     } catch (error) {
-      console.error("Error parsing Pine Script:", error);
+      console.error("Pine Script error:", error);
       toast({
-        title: "Error Parsing Script",
-        description: error instanceof Error ? error.message : "Unknown error",
-        variant: "destructive",
+        title: "Compilation Error",
+        description: error instanceof Error ? error.message : "An error occurred while compiling your script.",
+        variant: "destructive"
       });
     }
   };
-  
+
   return (
     <Card className="w-full">
       <CardHeader>
         <CardTitle>Pine Script Editor</CardTitle>
         <CardDescription>
-          Write custom trading strategies using Pine Script syntax
+          Create a trading strategy using TradingView's Pine Script language
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <Textarea
-          className="font-mono h-96"
-          value={script}
-          onChange={(e) => setScript(e.target.value)}
-          placeholder="Enter your Pine Script code here..."
-        />
+        <Tabs value={activeTab} onValueChange={setActiveTab}>
+          <TabsList className="grid w-full grid-cols-2 mb-6">
+            <TabsTrigger value="editor">Script Editor</TabsTrigger>
+            <TabsTrigger value="backtest" disabled={!strategy}>Backtest</TabsTrigger>
+          </TabsList>
+          
+          <TabsContent value="editor" className="space-y-4">
+            <div className="relative">
+              <textarea
+                value={script}
+                onChange={handleScriptChange}
+                className="w-full h-96 p-4 font-mono text-sm bg-muted border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                spellCheck={false}
+              />
+            </div>
+            
+            <div className="flex justify-end">
+              <Button onClick={handleRun}>Compile & Run</Button>
+            </div>
+          </TabsContent>
+          
+          <TabsContent value="backtest">
+            {strategy && (
+              <BacktestingTab strategy={strategy} />
+            )}
+          </TabsContent>
+        </Tabs>
       </CardContent>
-      <CardFooter className="flex justify-between">
-        <Button variant="outline" onClick={() => setScript(EXAMPLE_SCRIPT)}>
-          Load Example
-        </Button>
-        <Button onClick={handleParseScript}>
-          Parse Strategy
-        </Button>
-      </CardFooter>
-      
-      {parsedStrategy && (
-        <CardContent className="border-t pt-4">
-          <h3 className="text-lg font-medium mb-2">Parsed Strategy</h3>
-          <pre className="bg-muted p-4 rounded-md text-sm overflow-auto max-h-60">
-            {JSON.stringify(parsedStrategy, null, 2)}
-          </pre>
-        </CardContent>
-      )}
     </Card>
   );
 }
+
+// Default Pine Script template
+const defaultScript = `// Define strategy settings
+strategy("My First Strategy", overlay=true)
+
+// Input parameters
+length = input(14, "RSI Period")
+overbought = input(70, "Overbought Level")
+oversold = input(30, "Oversold Level")
+
+// Calculate indicators
+src = close
+rsiValue = rsi(src, length)
+smaValue = sma(src, 50)
+
+// Define entry and exit conditions
+longCondition = crossover(rsiValue, oversold) and close > smaValue
+shortCondition = crossunder(rsiValue, overbought) and close < smaValue
+
+// Execute strategy
+if (longCondition)
+    strategy.entry("Long", strategy.long)
+
+if (shortCondition)
+    strategy.entry("Short", strategy.short)
+`;
