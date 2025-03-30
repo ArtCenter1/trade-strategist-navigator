@@ -8,7 +8,7 @@ const generatePerformanceData = (strategies: Strategy[]) => {
   const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   
   return monthNames.map((month, index) => {
-    const dataPoint: any = { month };
+    const dataPoint: Record<string, any> = { month };
     
     strategies.forEach(strategy => {
       // Generate semi-random performance data that somewhat follows the risk profile
@@ -16,8 +16,9 @@ const generatePerformanceData = (strategies: Strategy[]) => {
                             strategy.riskLevel === "medium" ? 1 : 0.7;
       
       // Base performance value + some randomness
+      // Fix: Convert winRate to a number with Number() before arithmetic operations
       const basePerformance = 
-        (strategy.performanceMetrics.winRate / 100) * (index + 1) * riskMultiplier;
+        (Number(strategy.performanceMetrics.winRate.replace('%', '')) / 100) * (index + 1) * riskMultiplier;
       
       // Add some randomness to the data
       const randomFactor = Math.random() * 5 - 2.5; // Random between -2.5 and 2.5
