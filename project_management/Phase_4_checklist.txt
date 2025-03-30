@@ -29,6 +29,7 @@
 - [x] Add rule creation interface
 - [ ] Implement strategy backtesting functionality
 - [ ] Add results visualization for backtests
+- [ ] Implement Pine Script interpreter for advanced strategy customization
 
 ## Implementation Status
 - [x] Basic strategy selection page is complete
@@ -38,6 +39,7 @@
 - [x] Custom strategy builder interface is complete
 - [ ] Backtesting functionality is pending
 - [ ] Advanced strategy customization options are pending
+- [ ] Pine Script integration is pending
 
 ## Testing
 - [x] Verify strategy cards display correctly
@@ -47,9 +49,10 @@
 - [x] Test custom strategy creation flow
 - [ ] Test backtesting functionality
 - [ ] Verify backtest results display correctly
+- [ ] Test Pine Script parsing and execution
 
 ## Notes
 - Consider adding more technical indicators to the custom strategy builder
 - Plan for strategy sharing functionality in future updates
 - Consider adding strategy import/export functionality
-
+- Pine Script integration will allow users to define more sophisticated trading strategies
