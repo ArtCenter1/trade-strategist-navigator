@@ -1,79 +1,109 @@
 
 import React from "react";
-import { useLocation } from "react-router-dom";
-import { 
-  SidebarGroup, 
-  SidebarGroupLabel, 
-  SidebarGroupContent,
-  SidebarMenu,
-  SidebarMenuItem,
-  SidebarMenuButton
-} from "@/components/ui/sidebar";
-import { Badge } from "@/components/ui/badge";
-import { cn } from "@/lib/utils";
-
-interface NavigationItem {
-  title: string;
-  url: string;
-  icon: React.ComponentType<any>;
-  badge?: string;
-}
+import { useLocation, Link } from "react-router-dom";
+import { SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar";
 
 interface NavigationMenuProps {
-  mainMenuItems: NavigationItem[];
-  accountMenuItems: NavigationItem[];
+  mainMenuItems: Array<{
+    title: string;
+    url: string;
+    icon: React.ComponentType<any>;
+    badge?: string;
+  }>;
+  accountMenuItems: Array<{
+    title: string;
+    url: string;
+    icon: React.ComponentType<any>;
+  }>;
 }
 
 export function NavigationMenu({ mainMenuItems, accountMenuItems }: NavigationMenuProps) {
   const location = useLocation();
-
+  
+  // Add strategy management links
+  const strategyMenuItems = [
+    {
+      title: "Browse Strategies",
+      url: "/strategies",
+      isActive: location.pathname === "/strategies",
+    },
+    {
+      title: "Compare Strategies",
+      url: "/strategy-comparison",
+      isActive: location.pathname === "/strategy-comparison",
+    },
+    {
+      title: "Create Custom Strategy",
+      url: "/strategy-builder",
+      isActive: location.pathname === "/strategy-builder",
+    }
+  ];
+  
   return (
     <>
       <SidebarGroup>
-        <SidebarGroupLabel>Navigation</SidebarGroupLabel>
+        <SidebarGroupLabel>Overview</SidebarGroupLabel>
         <SidebarGroupContent>
           <SidebarMenu>
             {mainMenuItems.map((item) => (
-              <SidebarMenuItem key={item.title}>
-                <SidebarMenuButton 
-                  asChild 
-                  tooltip={item.title}
+              <SidebarMenuItem key={item.url}>
+                <SidebarMenuButton
+                  asChild
                   isActive={location.pathname === item.url}
+                  tooltip={item.title}
                 >
-                  <a href={item.url} className="relative">
-                    <item.icon className="h-4 w-4" />
+                  <Link to={item.url}>
+                    <item.icon />
                     <span>{item.title}</span>
-                    {item.badge && (
-                      <Badge 
-                        variant="outline" 
-                        className="absolute right-0 top-1/2 -translate-y-1/2 bg-primary/10 text-primary text-[10px] px-1 py-0"
-                      >
-                        {item.badge}
-                      </Badge>
-                    )}
-                  </a>
+                  </Link>
+                </SidebarMenuButton>
+                {item.badge && (
+                  <div className="absolute right-1 top-1.5 flex h-5 min-w-5 items-center justify-center rounded-md px-1 text-xs font-medium">
+                    {item.badge}
+                  </div>
+                )}
+              </SidebarMenuItem>
+            ))}
+          </SidebarMenu>
+        </SidebarGroupContent>
+      </SidebarGroup>
+      
+      <SidebarGroup>
+        <SidebarGroupLabel>Strategy Management</SidebarGroupLabel>
+        <SidebarGroupContent>
+          <SidebarMenu>
+            {strategyMenuItems.map((item) => (
+              <SidebarMenuItem key={item.url}>
+                <SidebarMenuButton
+                  asChild
+                  isActive={item.isActive}
+                  tooltip={item.title}
+                >
+                  <Link to={item.url}>
+                    <span>{item.title}</span>
+                  </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             ))}
           </SidebarMenu>
         </SidebarGroupContent>
       </SidebarGroup>
-
+      
       <SidebarGroup>
         <SidebarGroupLabel>Account</SidebarGroupLabel>
         <SidebarGroupContent>
           <SidebarMenu>
             {accountMenuItems.map((item) => (
-              <SidebarMenuItem key={item.title}>
-                <SidebarMenuButton 
-                  asChild 
-                  tooltip={item.title}
+              <SidebarMenuItem key={item.url}>
+                <SidebarMenuButton
+                  asChild
                   isActive={location.pathname === item.url}
+                  tooltip={item.title}
                 >
-                  <a href={item.url}>
-                    <item.icon className="h-4 w-4" />
+                  <Link to={item.url}>
+                    <item.icon />
                     <span>{item.title}</span>
-                  </a>
+                  </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             ))}

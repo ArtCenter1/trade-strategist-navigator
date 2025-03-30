@@ -40,6 +40,13 @@ export function StrategyDetail() {
     }
   }, [strategy, loading, navigate, toast]);
   
+  const handleSaveConfiguration = () => {
+    toast({
+      title: "Configuration Saved",
+      description: "Your strategy configuration has been updated successfully.",
+    });
+  };
+  
   if (loading || !strategy) {
     return (
       <div className="min-h-screen flex items-center justify-center">

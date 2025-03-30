@@ -16,6 +16,8 @@ import Settings from "./pages/Settings";
 import Profile from "./pages/Profile";
 import { DashboardLayout } from "./components/layout/DashboardLayout";
 import { PageTransition } from "./components/layout/PageTransition";
+import StrategyComparison from "./pages/StrategyComparison";
+import StrategyBuilder from "./pages/StrategyBuilder";
 
 const queryClient = new QueryClient();
 
@@ -48,6 +50,20 @@ function AnimatedRoutes() {
           <DashboardLayout>
             <PageTransition>
               <StrategyDetail />
+            </PageTransition>
+          </DashboardLayout>
+        } />
+        <Route path="/strategy-comparison" element={
+          <DashboardLayout>
+            <PageTransition>
+              <StrategyComparison />
+            </PageTransition>
+          </DashboardLayout>
+        } />
+        <Route path="/strategy-builder" element={
+          <DashboardLayout>
+            <PageTransition>
+              <StrategyBuilder />
             </PageTransition>
           </DashboardLayout>
         } />
