@@ -1,0 +1,55 @@
+
+# Phase 4 Checklist: Strategy Selection and Management
+
+## Features
+
+### Strategy Selection and Display
+- [x] Create strategy cards with visual representation
+- [x] Implement strategy listing page
+- [x] Add strategy filtering and sorting
+
+### Strategy Details
+- [x] Create detailed strategy view pages
+- [x] Implement performance metrics section
+- [x] Add configuration options section
+
+### Strategy Management
+- [x] Implement strategy deployment functionality
+- [x] Create configuration dialog for strategy parameters
+- [x] Add activation/deactivation controls
+
+### Strategy Comparison
+- [x] Create strategy comparison tool
+- [x] Implement side-by-side comparison of metrics
+- [x] Add visual performance comparison charts
+
+### Strategy Building
+- [x] Create custom strategy builder
+- [x] Implement indicator selection
+- [x] Add rule creation interface
+- [ ] Implement strategy backtesting functionality
+- [ ] Add results visualization for backtests
+
+## Implementation Status
+- [x] Basic strategy selection page is complete
+- [x] Strategy detail pages are functional
+- [x] Strategy deployment functionality is implemented
+- [x] Strategy comparison tool is operational
+- [x] Custom strategy builder interface is complete
+- [ ] Backtesting functionality is pending
+- [ ] Advanced strategy customization options are pending
+
+## Testing
+- [x] Verify strategy cards display correctly
+- [x] Test strategy selection and filtering
+- [x] Test strategy deployment functionality
+- [x] Verify comparison tool works with multiple strategies
+- [x] Test custom strategy creation flow
+- [ ] Test backtesting functionality
+- [ ] Verify backtest results display correctly
+
+## Notes
+- Consider adding more technical indicators to the custom strategy builder
+- Plan for strategy sharing functionality in future updates
+- Consider adding strategy import/export functionality
+
