@@ -2,9 +2,7 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/context/AuthContext";
-import { PerformanceMetrics } from "@/components/dashboard/PerformanceMetrics";
-import { AccountSummary } from "@/components/dashboard/AccountSummary";
-import { DeployStrategy } from "@/components/dashboard/DeployStrategy";
+import TradingDashboard from "@/components/dashboard/TradingDashboard";
 
 const Dashboard = () => {
   const { user, loading } = useAuth();
@@ -24,22 +22,7 @@ const Dashboard = () => {
     );
   }
 
-  return (
-    <div className="space-y-8">
-      <div>
-        <h1 className="text-2xl md:text-3xl font-bold tracking-tight">Welcome back!</h1>
-        <p className="text-muted-foreground mt-1">
-          Here's an overview of your trading activity and performance.
-        </p>
-      </div>
-      
-      <PerformanceMetrics />
-      
-      <AccountSummary />
-      
-      <DeployStrategy />
-    </div>
-  );
+  return <TradingDashboard />;
 };
 
 export default Dashboard;

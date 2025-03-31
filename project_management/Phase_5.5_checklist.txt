@@ -1,0 +1,52 @@
+
+# Phase 5.5 Checklist: UI and Structure Redesign
+
+## Dashboard Layout
+- [ ] Create a dark theme dashboard layout
+- [ ] Implement main navigation header
+- [ ] Add sidebar toggle functionality
+- [ ] Ensure responsive design for all screen sizes
+
+## Portfolio Overview Section
+- [ ] Implement portfolio value display with metrics
+- [ ] Create performance chart with time range selectors (Day, Week, Month, Year)
+- [ ] Implement current allocations donut chart
+- [ ] Add portfolio value/change indicators with color coding
+
+## Portfolio Details
+- [ ] Create tabbed interface (Balances, Open Orders, Order History, Transfers)
+- [ ] Implement asset list table with sorting
+- [ ] Add search functionality for assets
+- [ ] Create deposit/withdraw action buttons
+- [ ] Implement trade buttons for each asset
+
+## Asset Display
+- [ ] Create asset row component with icon, name, and ticker
+- [ ] Implement value and amount displays
+- [ ] Add mini charts for 7d performance
+- [ ] Add percentage change indicators with color coding
+- [ ] Implement pagination for asset table
+
+## Charts and Data Visualization
+- [ ] Implement main performance chart with hover details
+- [ ] Create portfolio allocation donut chart
+- [ ] Add mini trend charts for individual assets
+
+## Footer
+- [ ] Implement multi-column footer with platform information
+- [ ] Add referral section
+- [ ] Include mobile app download options
+
+## Navigation Components
+- [ ] Create global navigation bar
+- [ ] Implement notifications indicator
+- [ ] Add user profile dropdown
+- [ ] Create themed action buttons
+
+## Next Steps
+1. Set up the dark theme configuration
+2. Implement the dashboard layout structure
+3. Create reusable components for charts and tables
+4. Implement the portfolio overview section
+5. Create the asset table with all functionality
+6. Add footer and finishing touches
