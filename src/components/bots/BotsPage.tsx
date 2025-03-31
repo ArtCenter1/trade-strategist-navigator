@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { BotCard } from './BotCard';
 import { BotSection } from './BotSection';
-import { botsData } from './botsData';
+import { popularStrategies, smartTradingBots, signalBots, technicalAnalysisBots } from './botsData';
 import { BotEmptyState } from './BotEmptyState';
 import { CreateBotButton } from './CreateBotButton';
 import { FAQAccordion } from './FAQAccordion';
@@ -11,6 +11,14 @@ import { Button } from '@/components/ui/button';
 
 export default function BotsPage() {
   const [selectedCategory, setSelectedCategory] = useState('all');
+  
+  // Combine all bot data arrays
+  const botsData = [
+    ...popularStrategies,
+    ...smartTradingBots,
+    ...signalBots,
+    ...technicalAnalysisBots
+  ];
   
   // Filter bots based on selected category
   const filteredBots = selectedCategory === 'all'
