@@ -11,25 +11,10 @@ import { NavigationMenu } from "./NavigationMenu";
 import { UserProfileSection } from "./UserProfileSection";
 
 interface DashboardSidebarProps {
-  mainMenuItems: Array<{
-    title: string;
-    url: string;
-    icon: React.ComponentType<any>;
-    badge?: string;
-  }>;
-  accountMenuItems: Array<{
-    title: string;
-    url: string;
-    icon: React.ComponentType<any>;
-  }>;
   onSignOut: () => void;
 }
 
-export function DashboardSidebar({ 
-  mainMenuItems, 
-  accountMenuItems, 
-  onSignOut 
-}: DashboardSidebarProps) {
+export function DashboardSidebar({ onSignOut }: DashboardSidebarProps) {
   return (
     <Sidebar variant="sidebar" collapsible="icon">
       <SidebarHeader className="pb-2">
@@ -42,10 +27,7 @@ export function DashboardSidebar({
       </SidebarHeader>
       
       <SidebarContent>
-        <NavigationMenu 
-          mainMenuItems={mainMenuItems} 
-          accountMenuItems={accountMenuItems}
-        />
+        <NavigationMenu />
       </SidebarContent>
       
       <SidebarFooter>

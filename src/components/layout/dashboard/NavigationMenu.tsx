@@ -14,13 +14,13 @@ import { useEffect, useState } from "react";
 import { clsx } from "clsx";
 
 export function NavigationMenu() {
-  const { sidebarState } = useSidebar();
+  const { state } = useSidebar();
   const location = useLocation();
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   useEffect(() => {
-    setIsCollapsed(sidebarState === "collapsed");
-  }, [sidebarState]);
+    setIsCollapsed(state === "collapsed");
+  }, [state]);
 
   return (
     <nav className="space-y-1">
@@ -104,7 +104,6 @@ export function NavigationMenu() {
         Strategy Comparison
       </NavLink>
       
-      {/* Add Exchange Connection link */}
       <NavLink
         to="/exchange-connection"
         className={clsx(
@@ -168,7 +167,6 @@ export function NavigationMenu() {
   );
 }
 
-// Helper component for the dashboard icon
 function DashboardIcon({ className }: { className?: string }) {
   return (
     <LayoutDashboard
@@ -189,7 +187,6 @@ function DashboardIcon({ className }: { className?: string }) {
   );
 }
 
-// Helper component for the link icon
 function LinkIcon({ className }: { className?: string }) {
   return (
     <svg
