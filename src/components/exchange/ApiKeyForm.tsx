@@ -32,6 +32,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
+import { useAuth } from "@/context/AuthContext";
+import { APIKeyData, saveExchangeConnection, testExchangeConnection } from "@/services/api/exchangeApiService";
 
 // Validation schema for API key form
 const apiKeyFormSchema = z.object({
@@ -49,8 +51,12 @@ type ApiKeyFormValues = z.infer<typeof apiKeyFormSchema>;
 
 export function ApiKeyForm() {
   const { toast } = useToast();
+  const { user } = useAuth();
   const [showSecret, setShowSecret] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [testStatus, setTestStatus] = useState<{ testing: boolean; result?: { isValid: boolean; message: string } }>({
+    testing: false
+  });
 
   // Default form values
   const defaultValues: Partial<ApiKeyFormValues> = {
@@ -79,17 +85,39 @@ export function ApiKeyForm() {
   ];
 
   const onSubmit = async (data: ApiKeyFormValues) => {
+    if (!user) {
+      toast({
+        title: "Authentication required",
+        description: "You must be logged in to connect an exchange.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsSubmitting(true);
+    setTestStatus({ testing: true });
     
     try {
-      // In a real application, this would securely send the API credentials to a backend
-      console.log("Submitting API key data:", {
-        ...data,
-        apiSecret: "******" // Mask sensitive data in logs
-      });
+      // First test the connection
+      const testResult = await testExchangeConnection(data);
+      setTestStatus({ testing: false, result: testResult });
       
-      // Simulate API connection test
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      if (!testResult.isValid) {
+        toast({
+          title: "Connection test failed",
+          description: testResult.message,
+          variant: "destructive",
+        });
+        setIsSubmitting(false);
+        return;
+      }
+      
+      // If test passes, save the connection with encryption
+      const saveResult = await saveExchangeConnection(data, user.id);
+      
+      if (!saveResult.success) {
+        throw new Error(saveResult.error);
+      }
       
       // Show success message
       toast({
@@ -287,6 +315,33 @@ export function ApiKeyForm() {
                 </div>
               </div>
             </div>
+            
+            {testStatus.result && (
+              <div className={`rounded-md p-4 ${
+                testStatus.result.isValid 
+                  ? "bg-green-50 border border-green-200" 
+                  : "bg-red-50 border border-red-200"
+              }`}>
+                <div className="flex">
+                  <div className="ml-3">
+                    <h3 className={`text-sm font-medium ${
+                      testStatus.result.isValid 
+                        ? "text-green-800" 
+                        : "text-red-800"
+                    }`}>
+                      {testStatus.result.isValid ? "Connection Test Successful" : "Connection Test Failed"}
+                    </h3>
+                    <div className={`mt-2 text-sm ${
+                      testStatus.result.isValid 
+                        ? "text-green-700" 
+                        : "text-red-700"
+                    }`}>
+                      <p>{testStatus.result.message}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
             
             <Button 
               type="submit" 
