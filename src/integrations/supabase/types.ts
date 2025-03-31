@@ -18,6 +18,10 @@ export type Database = {
           id: string
           is_active: boolean | null
           label: string | null
+          last_checked: string | null
+          latency: number | null
+          passphrase: string | null
+          status_message: string | null
           updated_at: string
           user_id: string
         }
@@ -29,6 +33,10 @@ export type Database = {
           id?: string
           is_active?: boolean | null
           label?: string | null
+          last_checked?: string | null
+          latency?: number | null
+          passphrase?: string | null
+          status_message?: string | null
           updated_at?: string
           user_id: string
         }
@@ -40,6 +48,10 @@ export type Database = {
           id?: string
           is_active?: boolean | null
           label?: string | null
+          last_checked?: string | null
+          latency?: number | null
+          passphrase?: string | null
+          status_message?: string | null
           updated_at?: string
           user_id?: string
         }

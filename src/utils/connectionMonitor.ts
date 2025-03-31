@@ -18,9 +18,6 @@ export interface MonitoredConnection {
   status: ConnectionStatus;
 }
 
-/**
- * Check the health of an exchange connection
- */
 export async function checkConnectionHealth(
   connectionId: string, 
   userId: string
@@ -50,7 +47,10 @@ export async function checkConnectionHealth(
       exchange: data.exchange_name,
       label: data.label || '',
       readOnly: true,
-      passphrase: data.passphrase ? await decryptData(data.passphrase, userId) : undefined
+      // Only add passphrase if it exists and is not null
+      ...(data.passphrase ? { 
+        passphrase: await decryptData(data.passphrase, userId) 
+      } : {})
     };
     
     // Test the connection
