@@ -98,8 +98,18 @@ export function ApiKeyForm() {
     setTestStatus({ testing: true });
     
     try {
+      // Convert FormValues to APIKeyData format with required properties
+      const apiKeyData: APIKeyData = {
+        exchange: data.exchange,
+        apiKey: data.apiKey,
+        apiSecret: data.apiSecret,
+        label: data.label,
+        readOnly: data.readOnly,
+        passphrase: data.passphrase,
+      };
+      
       // First test the connection
-      const testResult = await testExchangeConnection(data);
+      const testResult = await testExchangeConnection(apiKeyData);
       setTestStatus({ testing: false, result: testResult });
       
       if (!testResult.isValid) {
@@ -113,7 +123,7 @@ export function ApiKeyForm() {
       }
       
       // If test passes, save the connection with encryption
-      const saveResult = await saveExchangeConnection(data, user.id);
+      const saveResult = await saveExchangeConnection(apiKeyData, user.id);
       
       if (!saveResult.success) {
         throw new Error(saveResult.error);
