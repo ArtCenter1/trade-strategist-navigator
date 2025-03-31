@@ -1,43 +1,61 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { ApiKeyForm } from "@/components/exchange/ApiKeyForm";
 import { ExchangeConnectionCard } from "@/components/exchange/ExchangeConnectionCard";
-
-const DUMMY_CONNECTIONS = [
-  {
-    id: "1",
-    exchangeId: "binance",
-    exchangeName: "Binance",
-    label: "Main Trading Account",
-    isConnected: true,
-    lastTested: new Date().toISOString(),
-    permissions: ["READ", "TRADE"],
-    balances: [
-      { asset: "BTC", free: 0.5, locked: 0.1 },
-      { asset: "ETH", free: 5.0, locked: 1.0 },
-      { asset: "USDT", free: 10000, locked: 5000 },
-    ],
-  },
-  {
-    id: "2",
-    exchangeId: "coinbase",
-    exchangeName: "Coinbase Pro",
-    label: "HODL Portfolio",
-    isConnected: true,
-    lastTested: new Date().toISOString(),
-    permissions: ["READ"],
-    balances: [
-      { asset: "BTC", free: 2.5, locked: 0 },
-      { asset: "ETH", free: 40.0, locked: 0 },
-    ],
-  },
-];
+import { useAuth } from "@/context/AuthContext";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 
 export default function ExchangeConnection() {
-  const [connections, setConnections] = useState(DUMMY_CONNECTIONS);
+  const { user } = useAuth();
+  const { toast } = useToast();
+  const [connections, setConnections] = useState([]);
   const [activeTab, setActiveTab] = useState("connections");
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Fetch user connections when component mounts
+  useEffect(() => {
+    async function fetchConnections() {
+      if (!user) return;
+      
+      try {
+        setIsLoading(true);
+        const { data, error } = await supabase
+          .from('exchange_connections')
+          .select('*')
+          .eq('user_id', user.id);
+          
+        if (error) throw error;
+        
+        // Transform the data to match our component's expected format
+        const formattedConnections = data.map(conn => ({
+          id: conn.id,
+          exchangeId: conn.exchange_name.toLowerCase(),
+          exchangeName: conn.exchange_name,
+          label: conn.label || conn.exchange_name,
+          isConnected: conn.is_active,
+          lastTested: conn.last_checked || new Date().toISOString(),
+          permissions: ["READ"], // Default to READ permission
+          balances: [], // We'll load these separately if needed
+        }));
+        
+        setConnections(formattedConnections);
+      } catch (error) {
+        console.error("Error fetching connections:", error);
+        toast({
+          title: "Failed to load connections",
+          description: "Please try again later",
+          variant: "destructive",
+        });
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    
+    fetchConnections();
+  }, [user, toast]);
 
   return (
     <div className="container max-w-7xl py-10">
@@ -55,7 +73,13 @@ export default function ExchangeConnection() {
         </TabsList>
         
         <TabsContent value="connections" className="space-y-6">
-          {connections.length === 0 ? (
+          {isLoading ? (
+            <Card>
+              <CardContent className="flex items-center justify-center py-10">
+                <p className="text-center text-muted-foreground">Loading connections...</p>
+              </CardContent>
+            </Card>
+          ) : connections.length === 0 ? (
             <Card>
               <CardContent className="flex flex-col items-center justify-center py-10">
                 <p className="text-center text-muted-foreground">

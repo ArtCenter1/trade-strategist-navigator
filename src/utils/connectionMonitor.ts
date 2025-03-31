@@ -25,6 +25,11 @@ export async function checkConnectionHealth(
   const startTime = Date.now();
   
   try {
+    // Make sure connectionId is a valid UUID before querying
+    if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(connectionId)) {
+      throw new Error("Invalid connection ID format");
+    }
+
     // Fetch connection details from the database
     const { data, error } = await supabase
       .from('exchange_connections')
@@ -47,11 +52,12 @@ export async function checkConnectionHealth(
       exchange: data.exchange_name,
       label: data.label || '',
       readOnly: true,
-      // Only add passphrase if it exists and is not null
-      ...(data.passphrase ? { 
-        passphrase: await decryptData(data.passphrase, userId) 
-      } : {})
     };
+    
+    // Only add passphrase if it exists in the data object and is not null
+    if (data.passphrase) {
+      apiKeyData.passphrase = await decryptData(data.passphrase, userId);
+    }
     
     // Test the connection
     const testResult = await testExchangeConnection(apiKeyData);
@@ -83,6 +89,11 @@ export async function updateConnectionStatus(
   status: ConnectionStatus
 ): Promise<boolean> {
   try {
+    // Make sure connectionId is a valid UUID before updating
+    if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(connectionId)) {
+      throw new Error("Invalid connection ID format");
+    }
+
     const { error } = await supabase
       .from('exchange_connections')
       .update({
