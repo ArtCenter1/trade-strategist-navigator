@@ -6,6 +6,8 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { Settings, User } from "lucide-react";
 import { DashboardHeader } from "./dashboard/DashboardHeader";
 import { MainContent } from "./dashboard/MainContent";
+import { DashboardSidebar } from "./dashboard/DashboardSidebar";
+import { SidebarProvider } from "@/components/ui/sidebar";
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
@@ -37,15 +39,20 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col w-full bg-background">
-      <DashboardHeader 
-        accountMenuItems={accountMenuItems}
-        onSignOut={handleSignOut}
-      />
-      
-      <MainContent>
-        {children}
-      </MainContent>
-    </div>
+    <SidebarProvider>
+      <div className="min-h-screen flex flex-col w-full bg-background">
+        <DashboardHeader 
+          accountMenuItems={accountMenuItems}
+          onSignOut={handleSignOut}
+        />
+        
+        <div className="flex flex-1 w-full">
+          <DashboardSidebar onSignOut={handleSignOut} />
+          <MainContent>
+            {children}
+          </MainContent>
+        </div>
+      </div>
+    </SidebarProvider>
   );
 }

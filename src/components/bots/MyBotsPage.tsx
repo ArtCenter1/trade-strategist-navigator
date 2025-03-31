@@ -20,7 +20,8 @@ const draftBots: BotType[] = [
     successRate: 65,
     activeUsers: 423,
     status: "stopped",
-    ownerName: "quiztical_curran"
+    ownerName: "quiztical_curran",
+    category: "Draft Bots"
   }
 ];
 

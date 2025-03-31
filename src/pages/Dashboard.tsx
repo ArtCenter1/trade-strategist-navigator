@@ -3,6 +3,8 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/context/AuthContext";
 import TradingDashboard from "@/components/dashboard/TradingDashboard";
+import { DashboardLayout } from "@/components/layout/DashboardLayout";
+import { PageTransition } from "@/components/layout/PageTransition";
 
 const Dashboard = () => {
   const { user, loading } = useAuth();
@@ -22,7 +24,13 @@ const Dashboard = () => {
     );
   }
 
-  return <TradingDashboard />;
+  return (
+    <DashboardLayout>
+      <PageTransition>
+        <TradingDashboard />
+      </PageTransition>
+    </DashboardLayout>
+  );
 };
 
 export default Dashboard;
