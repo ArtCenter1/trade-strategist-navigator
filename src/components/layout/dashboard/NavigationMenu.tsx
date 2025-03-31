@@ -1,115 +1,209 @@
+import {
+  Home,
+  LayoutDashboard,
+  Settings,
+  User,
+  BarChartBig,
+  Scale,
+  TrendingUp,
+  LayoutPanelLeft,
+} from "lucide-react";
+import { NavLink, useLocation } from "react-router-dom";
+import { useSidebar } from "@/components/ui/sidebar/sidebar-context";
+import { useEffect, useState } from "react";
+import { clsx } from "clsx";
 
-import React from "react";
-import { useLocation, Link } from "react-router-dom";
-import { SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar";
+export function NavigationMenu() {
+  const { sidebarState } = useSidebar();
+  const location = useLocation();
+  const [isCollapsed, setIsCollapsed] = useState(false);
 
-interface NavigationMenuProps {
-  mainMenuItems: Array<{
-    title: string;
-    url: string;
-    icon: React.ComponentType<any>;
-    badge?: string;
-  }>;
-  accountMenuItems: Array<{
-    title: string;
-    url: string;
-    icon: React.ComponentType<any>;
-  }>;
+  useEffect(() => {
+    setIsCollapsed(sidebarState === "collapsed");
+  }, [sidebarState]);
+
+  return (
+    <nav className="space-y-1">
+      <NavLink
+        to="/dashboard"
+        className={clsx(
+          "group flex items-center px-3 py-2 text-sm font-medium rounded-md",
+          location.pathname === "/dashboard"
+            ? "bg-primary/10 text-primary"
+            : "text-foreground hover:bg-primary/5"
+        )}
+      >
+        <DashboardIcon
+          className={clsx(
+            "mr-3 flex-shrink-0 h-6 w-6",
+            location.pathname === "/dashboard"
+              ? "text-primary"
+              : "text-muted-foreground group-hover:text-foreground"
+          )}
+        />
+        Dashboard
+      </NavLink>
+      
+      <NavLink
+        to="/strategies"
+        className={clsx(
+          "group flex items-center px-3 py-2 text-sm font-medium rounded-md",
+          location.pathname === "/strategies"
+            ? "bg-primary/10 text-primary"
+            : "text-foreground hover:bg-primary/5"
+        )}
+      >
+        <Scale
+          className={clsx(
+            "mr-3 flex-shrink-0 h-6 w-6",
+            location.pathname === "/strategies"
+              ? "text-primary"
+              : "text-muted-foreground group-hover:text-foreground"
+          )}
+        />
+        Strategies
+      </NavLink>
+      
+      <NavLink
+        to="/strategy-builder"
+        className={clsx(
+          "group flex items-center px-3 py-2 text-sm font-medium rounded-md",
+          location.pathname === "/strategy-builder"
+            ? "bg-primary/10 text-primary"
+            : "text-foreground hover:bg-primary/5"
+        )}
+      >
+        <TrendingUp
+          className={clsx(
+            "mr-3 flex-shrink-0 h-6 w-6",
+            location.pathname === "/strategy-builder"
+              ? "text-primary"
+              : "text-muted-foreground group-hover:text-foreground"
+          )}
+        />
+        Strategy Builder
+      </NavLink>
+      
+      <NavLink
+        to="/strategy-comparison"
+        className={clsx(
+          "group flex items-center px-3 py-2 text-sm font-medium rounded-md",
+          location.pathname === "/strategy-comparison"
+            ? "bg-primary/10 text-primary"
+            : "text-foreground hover:bg-primary/5"
+        )}
+      >
+        <BarChartBig
+          className={clsx(
+            "mr-3 flex-shrink-0 h-6 w-6",
+            location.pathname === "/strategy-comparison"
+              ? "text-primary"
+              : "text-muted-foreground group-hover:text-foreground"
+          )}
+        />
+        Strategy Comparison
+      </NavLink>
+      
+      {/* Add Exchange Connection link */}
+      <NavLink
+        to="/exchange-connection"
+        className={clsx(
+          "group flex items-center px-3 py-2 text-sm font-medium rounded-md",
+          location.pathname === "/exchange-connection"
+            ? "bg-primary/10 text-primary"
+            : "text-foreground hover:bg-primary/5"
+        )}
+      >
+        <LinkIcon
+          className={clsx(
+            "mr-3 flex-shrink-0 h-6 w-6",
+            location.pathname === "/exchange-connection"
+              ? "text-primary"
+              : "text-muted-foreground group-hover:text-foreground"
+          )}
+        />
+        Exchange Connections
+      </NavLink>
+      
+      <NavLink
+        to="/profile"
+        className={clsx(
+          "group flex items-center px-3 py-2 text-sm font-medium rounded-md",
+          location.pathname === "/profile"
+            ? "bg-primary/10 text-primary"
+            : "text-foreground hover:bg-primary/5"
+        )}
+      >
+        <User
+          className={clsx(
+            "mr-3 flex-shrink-0 h-6 w-6",
+            location.pathname === "/profile"
+              ? "text-primary"
+              : "text-muted-foreground group-hover:text-foreground"
+          )}
+        />
+        Profile
+      </NavLink>
+      
+      <NavLink
+        to="/settings"
+        className={clsx(
+          "group flex items-center px-3 py-2 text-sm font-medium rounded-md",
+          location.pathname === "/settings"
+            ? "bg-primary/10 text-primary"
+            : "text-foreground hover:bg-primary/5"
+        )}
+      >
+        <Settings
+          className={clsx(
+            "mr-3 flex-shrink-0 h-6 w-6",
+            location.pathname === "/settings"
+              ? "text-primary"
+              : "text-muted-foreground group-hover:text-foreground"
+          )}
+        />
+        Settings
+      </NavLink>
+    </nav>
+  );
 }
 
-export function NavigationMenu({ mainMenuItems, accountMenuItems }: NavigationMenuProps) {
-  const location = useLocation();
-  
-  // Add strategy management links
-  const strategyMenuItems = [
-    {
-      title: "Browse Strategies",
-      url: "/strategies",
-      isActive: location.pathname === "/strategies",
-    },
-    {
-      title: "Compare Strategies",
-      url: "/strategy-comparison",
-      isActive: location.pathname === "/strategy-comparison",
-    },
-    {
-      title: "Create Custom Strategy",
-      url: "/strategy-builder",
-      isActive: location.pathname === "/strategy-builder",
-    }
-  ];
-  
+// Helper component for the dashboard icon
+function DashboardIcon({ className }: { className?: string }) {
   return (
-    <>
-      <SidebarGroup>
-        <SidebarGroupLabel>Overview</SidebarGroupLabel>
-        <SidebarGroupContent>
-          <SidebarMenu>
-            {mainMenuItems.map((item) => (
-              <SidebarMenuItem key={item.url}>
-                <SidebarMenuButton
-                  asChild
-                  isActive={location.pathname === item.url}
-                  tooltip={item.title}
-                >
-                  <Link to={item.url}>
-                    <item.icon />
-                    <span>{item.title}</span>
-                  </Link>
-                </SidebarMenuButton>
-                {item.badge && (
-                  <div className="absolute right-1 top-1.5 flex h-5 min-w-5 items-center justify-center rounded-md px-1 text-xs font-medium">
-                    {item.badge}
-                  </div>
-                )}
-              </SidebarMenuItem>
-            ))}
-          </SidebarMenu>
-        </SidebarGroupContent>
-      </SidebarGroup>
-      
-      <SidebarGroup>
-        <SidebarGroupLabel>Strategy Management</SidebarGroupLabel>
-        <SidebarGroupContent>
-          <SidebarMenu>
-            {strategyMenuItems.map((item) => (
-              <SidebarMenuItem key={item.url}>
-                <SidebarMenuButton
-                  asChild
-                  isActive={item.isActive}
-                  tooltip={item.title}
-                >
-                  <Link to={item.url}>
-                    <span>{item.title}</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            ))}
-          </SidebarMenu>
-        </SidebarGroupContent>
-      </SidebarGroup>
-      
-      <SidebarGroup>
-        <SidebarGroupLabel>Account</SidebarGroupLabel>
-        <SidebarGroupContent>
-          <SidebarMenu>
-            {accountMenuItems.map((item) => (
-              <SidebarMenuItem key={item.url}>
-                <SidebarMenuButton
-                  asChild
-                  isActive={location.pathname === item.url}
-                  tooltip={item.title}
-                >
-                  <Link to={item.url}>
-                    <item.icon />
-                    <span>{item.title}</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            ))}
-          </SidebarMenu>
-        </SidebarGroupContent>
-      </SidebarGroup>
-    </>
+    <LayoutDashboard
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
+      <rect width="7" height="9" x="3" y="3" rx="1" />
+      <rect width="7" height="5" x="14" y="3" rx="1" />
+      <rect width="7" height="9" x="14" y="12" rx="1" />
+      <rect width="7" height="5" x="3" y="16" rx="1" />
+    </LayoutDashboard>
+  );
+}
+
+// Helper component for the link icon
+function LinkIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
+      <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+      <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+    </svg>
   );
 }

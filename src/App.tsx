@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -18,10 +17,11 @@ import { DashboardLayout } from "./components/layout/DashboardLayout";
 import { PageTransition } from "./components/layout/PageTransition";
 import StrategyComparison from "./pages/StrategyComparison";
 import StrategyBuilder from "./pages/StrategyBuilder";
+import ExchangeConnection from "./pages/ExchangeConnection";
+import { ProtectedRoute } from "@/components/ProtectedRoute";
 
 const queryClient = new QueryClient();
 
-// Wrapper component to handle AnimatePresence
 function AnimatedRoutes() {
   const location = useLocation();
   
@@ -31,7 +31,6 @@ function AnimatedRoutes() {
         <Route path="/" element={<PageTransition><Index /></PageTransition>} />
         <Route path="/auth" element={<PageTransition><Auth /></PageTransition>} />
         
-        {/* Dashboard Routes with DashboardLayout */}
         <Route path="/dashboard" element={
           <DashboardLayout>
             <PageTransition>
@@ -103,25 +102,36 @@ function AnimatedRoutes() {
           </DashboardLayout>
         } />
         
-        {/* Catch-all route */}
+        <Route path="/exchange-connection" element={
+          <ProtectedRoute>
+            <DashboardLayout>
+              <PageTransition>
+                <ExchangeConnection />
+              </PageTransition>
+            </DashboardLayout>
+          </ProtectedRoute>
+        } />
+        
         <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
       </Routes>
     </AnimatePresence>
   );
 }
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <AuthProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <AnimatedRoutes />
-        </BrowserRouter>
-      </AuthProvider>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+function App() {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <AuthProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <AnimatedRoutes />
+          </BrowserRouter>
+        </AuthProvider>
+      </TooltipProvider>
+    </QueryClientProvider>
+  );
+}
 
 export default App;
