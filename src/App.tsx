@@ -34,8 +34,8 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
 function App() {
   return (
     <>
-      <Toaster />
       <BrowserRouter>
+        <Toaster />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/auth" element={<Auth />} />
