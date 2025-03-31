@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Scale, TrendingUp, BarChartBig } from "lucide-react";
+import { Scale, TrendingUp, BarChartBig, Cpu } from "lucide-react";
 import { DashboardNavItem } from "./DashboardNavItem";
 
 interface StrategyNavSectionProps {
@@ -26,6 +26,12 @@ export function StrategyNavSection({ currentPath }: StrategyNavSectionProps) {
         to="/strategy-comparison" 
         icon={BarChartBig} 
         label="Strategy Comparison" 
+        currentPath={currentPath} 
+      />
+      <DashboardNavItem 
+        to="/bots" 
+        icon={Cpu} 
+        label="Available Bots" 
         currentPath={currentPath} 
       />
     </div>

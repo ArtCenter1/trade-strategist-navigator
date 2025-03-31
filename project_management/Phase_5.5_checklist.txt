@@ -32,6 +32,18 @@
 - [x] Add asset table with mini charts
 - [x] Create indicator tools for chart
 
+## Bots Page
+- [ ] Create bots page layout with hero section
+- [ ] Implement strategy cards with icons and descriptions
+- [ ] Add tabbed navigation for bot categories
+- [ ] Create bot detail cards with metrics
+- [ ] Implement search functionality for bots
+- [ ] Add status indicators for bot cards
+- [ ] Design action buttons for each bot card
+- [ ] Implement popular strategies section
+- [ ] Create smart trading section
+- [ ] Add technical analysis section
+
 ## Asset Display
 - [ ] Create asset row component with icon, name, and ticker
 - [ ] Implement value and amount displays
@@ -66,4 +78,5 @@
 5. Create the asset table with all functionality
 6. Develop the terminal trading interface
 7. Add footer and finishing touches
+8. Complete the bots page with strategy cards
 

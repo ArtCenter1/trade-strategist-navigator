@@ -21,6 +21,7 @@ import StrategyBuilder from "./pages/StrategyBuilder";
 import ExchangeConnection from "./pages/ExchangeConnection";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
 import Terminal from "./pages/Terminal";
+import Bots from "./pages/Bots";
 
 const queryClient = new QueryClient();
 
@@ -44,6 +45,13 @@ function AnimatedRoutes() {
           <ProtectedRoute>
             <PageTransition>
               <Terminal />
+            </PageTransition>
+          </ProtectedRoute>
+        } />
+        <Route path="/bots" element={
+          <ProtectedRoute>
+            <PageTransition>
+              <Bots />
             </PageTransition>
           </ProtectedRoute>
         } />
