@@ -4,8 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/context/AuthContext";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Settings, User } from "lucide-react";
-import { SidebarProvider } from "@/components/ui/sidebar";
-import { DashboardSidebar } from "./dashboard/DashboardSidebar";
 import { DashboardHeader } from "./dashboard/DashboardHeader";
 import { MainContent } from "./dashboard/MainContent";
 
@@ -39,21 +37,15 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
   ];
 
   return (
-    <SidebarProvider defaultOpen={!isMobile}>
-      <div className="min-h-screen flex w-full bg-background">
-        <DashboardSidebar onSignOut={handleSignOut} />
-
-        <div className="flex flex-col flex-1 overflow-hidden">
-          <DashboardHeader 
-            accountMenuItems={accountMenuItems}
-            onSignOut={handleSignOut}
-          />
-          
-          <MainContent>
-            {children}
-          </MainContent>
-        </div>
-      </div>
-    </SidebarProvider>
+    <div className="min-h-screen flex flex-col w-full bg-background">
+      <DashboardHeader 
+        accountMenuItems={accountMenuItems}
+        onSignOut={handleSignOut}
+      />
+      
+      <MainContent>
+        {children}
+      </MainContent>
+    </div>
   );
 }

@@ -66,7 +66,7 @@ export function NavigationHeader() {
           <Link 
             to="/bots" 
             className={`text-sm font-medium hover:text-primary flex items-center gap-1 ${
-              location.pathname === "/bots" ? "text-primary border-b-2 border-primary pb-1" : "text-muted-foreground"
+              location.pathname.includes("/bots") || location.pathname.includes("/my-bots") || location.pathname.includes("/bot-builder") ? "text-primary border-b-2 border-primary pb-1" : "text-muted-foreground"
             }`}
           >
             <Cpu className="w-4 h-4" />
@@ -74,23 +74,23 @@ export function NavigationHeader() {
           </Link>
           
           <Link 
-            to="/earn" 
+            to="/strategy-comparison" 
             className={`text-sm font-medium hover:text-primary flex items-center gap-1 ${
-              location.pathname === "/earn" ? "text-primary border-b-2 border-primary pb-1" : "text-muted-foreground"
-            }`}
-          >
-            <DollarSign className="w-4 h-4" />
-            <span>Earn</span>
-          </Link>
-          
-          <Link 
-            to="/markets" 
-            className={`text-sm font-medium hover:text-primary flex items-center gap-1 ${
-              location.pathname === "/markets" ? "text-primary border-b-2 border-primary pb-1" : "text-muted-foreground"
+              location.pathname.includes("/strategy") ? "text-primary border-b-2 border-primary pb-1" : "text-muted-foreground"
             }`}
           >
             <BarChart className="w-4 h-4" />
-            <span>Markets</span>
+            <span>Strategy</span>
+          </Link>
+          
+          <Link 
+            to="/exchange-connection" 
+            className={`text-sm font-medium hover:text-primary flex items-center gap-1 ${
+              location.pathname === "/exchange-connection" ? "text-primary border-b-2 border-primary pb-1" : "text-muted-foreground"
+            }`}
+          >
+            <DollarSign className="w-4 h-4" />
+            <span>Exchanges</span>
           </Link>
         </div>
       )}
