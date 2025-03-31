@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Toaster } from "@/components/ui/toaster"
@@ -32,50 +33,52 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
 
 function App() {
   return (
-    <Toaster />
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Index />} />
-        <Route path="/auth" element={<Auth />} />
-        <Route 
-          path="/dashboard" 
-          element={<ProtectedRoute><Dashboard /></ProtectedRoute>} 
-        />
-        <Route 
-          path="/terminal" 
-          element={<ProtectedRoute><Terminal /></ProtectedRoute>} 
-        />
-        <Route 
-          path="/bots" 
-          element={<ProtectedRoute><Bots /></ProtectedRoute>} 
-        />
-        <Route 
-          path="/my-bots" 
-          element={<ProtectedRoute><MyBots /></ProtectedRoute>} 
-        />
-        <Route 
-          path="/bot-builder" 
-          element={<ProtectedRoute><BotBuilder /></ProtectedRoute>} 
-        />
-        <Route 
-          path="/strategy-comparison" 
-          element={<ProtectedRoute><StrategyComparison /></ProtectedRoute>} 
-        />
-        <Route 
-          path="/exchange-connection" 
-          element={<ProtectedRoute><ExchangeConnection /></ProtectedRoute>} 
-        />
-        <Route 
-          path="/profile" 
-          element={<ProtectedRoute><Profile /></ProtectedRoute>} 
-        />
-        <Route 
-          path="/settings" 
-          element={<ProtectedRoute><Settings /></ProtectedRoute>} 
-        />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </BrowserRouter>
+    <>
+      <Toaster />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Index />} />
+          <Route path="/auth" element={<Auth />} />
+          <Route 
+            path="/dashboard" 
+            element={<ProtectedRoute><Dashboard /></ProtectedRoute>} 
+          />
+          <Route 
+            path="/terminal" 
+            element={<ProtectedRoute><Terminal /></ProtectedRoute>} 
+          />
+          <Route 
+            path="/bots" 
+            element={<ProtectedRoute><Bots /></ProtectedRoute>} 
+          />
+          <Route 
+            path="/my-bots" 
+            element={<ProtectedRoute><MyBots /></ProtectedRoute>} 
+          />
+          <Route 
+            path="/bot-builder" 
+            element={<ProtectedRoute><BotBuilder /></ProtectedRoute>} 
+          />
+          <Route 
+            path="/strategy-comparison" 
+            element={<ProtectedRoute><StrategyComparison /></ProtectedRoute>} 
+          />
+          <Route 
+            path="/exchange-connection" 
+            element={<ProtectedRoute><ExchangeConnection /></ProtectedRoute>} 
+          />
+          <Route 
+            path="/profile" 
+            element={<ProtectedRoute><Profile /></ProtectedRoute>} 
+          />
+          <Route 
+            path="/settings" 
+            element={<ProtectedRoute><Settings /></ProtectedRoute>} 
+          />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 
