@@ -9,6 +9,7 @@ import Dashboard from './pages/Dashboard';
 import Terminal from './pages/Terminal';
 import Bots from './pages/Bots';
 import StrategyComparison from './pages/StrategyComparison';
+import StrategyBuilder from './pages/StrategyBuilder';
 import ExchangeConnection from './pages/ExchangeConnection';
 import Profile from './pages/Profile';
 import Settings from './pages/Settings';
@@ -58,6 +59,10 @@ function App() {
           <Route 
             path="/bot-builder" 
             element={<ProtectedRoute><BotBuilder /></ProtectedRoute>} 
+          />
+          <Route 
+            path="/strategy-builder" 
+            element={<ProtectedRoute><StrategyBuilder /></ProtectedRoute>} 
           />
           <Route 
             path="/strategy-comparison" 

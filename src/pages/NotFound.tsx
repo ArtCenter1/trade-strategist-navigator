@@ -3,9 +3,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const NotFound = () => {
-  // Remove the useLocation hook since it's causing issues
-  // Instead, we'll use a simple 404 page that works regardless of router context
-  
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="text-center">
