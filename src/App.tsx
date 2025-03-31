@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -19,6 +20,7 @@ import StrategyComparison from "./pages/StrategyComparison";
 import StrategyBuilder from "./pages/StrategyBuilder";
 import ExchangeConnection from "./pages/ExchangeConnection";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
+import Terminal from "./pages/Terminal";
 
 const queryClient = new QueryClient();
 
@@ -37,6 +39,13 @@ function AnimatedRoutes() {
               <Dashboard />
             </PageTransition>
           </DashboardLayout>
+        } />
+        <Route path="/terminal" element={
+          <ProtectedRoute>
+            <PageTransition>
+              <Terminal />
+            </PageTransition>
+          </ProtectedRoute>
         } />
         <Route path="/strategies" element={
           <DashboardLayout>
