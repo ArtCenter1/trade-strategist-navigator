@@ -13,6 +13,7 @@ export interface Bot {
   isNew?: boolean;
   status?: 'active' | 'stopped' | 'draft';
   ownerName?: string;
+  category: string; // Added the category property
 }
 
 export interface BotStrategy {

@@ -21,7 +21,8 @@ export const popularStrategies: Bot[] = [
     iconBgColor: '#4CAF50',
     successRate: 93,
     activeUsers: 8432,
-    isPopular: true
+    isPopular: true,
+    category: 'Popular Strategies'
   },
   {
     id: 'grid-trader',
@@ -31,7 +32,8 @@ export const popularStrategies: Bot[] = [
     iconBgColor: '#FF9800',
     successRate: 89,
     activeUsers: 5644,
-    isPopular: true
+    isPopular: true,
+    category: 'Popular Strategies'
   },
   {
     id: 'portfolio-rebalancer',
@@ -40,7 +42,8 @@ export const popularStrategies: Bot[] = [
     icon: <RefreshCcw className="h-5 w-5" />,
     iconBgColor: '#2196F3',
     successRate: 94,
-    activeUsers: 4566
+    activeUsers: 4566,
+    category: 'Popular Strategies'
   },
   {
     id: 'copy-trader',
@@ -50,7 +53,8 @@ export const popularStrategies: Bot[] = [
     iconBgColor: '#E91E63',
     successRate: 86,
     activeUsers: 9238,
-    isNew: true
+    isNew: true,
+    category: 'Popular Strategies'
   }
 ];
 
@@ -63,7 +67,8 @@ export const smartTradingBots: Bot[] = [
     iconBgColor: '#9C27B0',
     successRate: 92,
     activeUsers: 3356,
-    isNew: true
+    isNew: true,
+    category: 'AI Bots'
   },
   {
     id: 'smart-order',
@@ -72,7 +77,8 @@ export const smartTradingBots: Bot[] = [
     icon: <BarChart4 className="h-5 w-5" />,
     iconBgColor: '#FFC107',
     successRate: 90,
-    activeUsers: 2889
+    activeUsers: 2889,
+    category: 'Smart Trading'
   },
   {
     id: 'market-maker',
@@ -81,7 +87,8 @@ export const smartTradingBots: Bot[] = [
     icon: <Activity className="h-5 w-5" />,
     iconBgColor: '#F44336',
     successRate: 88,
-    activeUsers: 1876
+    activeUsers: 1876,
+    category: 'Smart Trading'
   }
 ];
 
@@ -93,7 +100,8 @@ export const signalBots: Bot[] = [
     icon: <TrendingUp className="h-5 w-5" />,
     iconBgColor: '#673AB7',
     successRate: 87,
-    activeUsers: 6542
+    activeUsers: 6542,
+    category: 'Signal Bots'
   }
 ];
 
@@ -105,7 +113,8 @@ export const technicalAnalysisBots: Bot[] = [
     icon: <TrendingUp className="h-5 w-5" />,
     iconBgColor: '#FF5722',
     successRate: 85,
-    activeUsers: 3421
+    activeUsers: 3421,
+    category: 'Technical Analysis'
   },
   {
     id: 'dmi',
@@ -114,7 +123,8 @@ export const technicalAnalysisBots: Bot[] = [
     icon: <TrendingUp className="h-5 w-5" />,
     iconBgColor: '#9C27B0',
     successRate: 83,
-    activeUsers: 2576
+    activeUsers: 2576,
+    category: 'Technical Analysis'
   },
   {
     id: 'bollinger-bands',
@@ -123,7 +133,8 @@ export const technicalAnalysisBots: Bot[] = [
     icon: <Activity className="h-5 w-5" />,
     iconBgColor: '#4CAF50',
     successRate: 88,
-    activeUsers: 4124
+    activeUsers: 4124,
+    category: 'Technical Analysis'
   },
   {
     id: 'mean-reversion',
@@ -132,6 +143,7 @@ export const technicalAnalysisBots: Bot[] = [
     icon: <Repeat className="h-5 w-5" />,
     iconBgColor: '#00BCD4',
     successRate: 84,
-    activeUsers: 2819
+    activeUsers: 2819,
+    category: 'Technical Analysis'
   }
 ];
