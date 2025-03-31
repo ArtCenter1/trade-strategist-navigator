@@ -1,6 +1,6 @@
 
 import React from "react";
-import { LayoutDashboard, Terminal, Cpu, DollarSign, BarChart } from "lucide-react";
+import { LayoutDashboard, Terminal, Bot, DollarSign, BarChart } from "lucide-react";
 import { DashboardNavItem } from "./DashboardNavItem";
 
 interface MainNavSectionProps {
@@ -24,7 +24,7 @@ export function MainNavSection({ currentPath }: MainNavSectionProps) {
       />
       <DashboardNavItem 
         to="/bots" 
-        icon={Cpu} 
+        icon={Bot} 
         label="Bots" 
         currentPath={currentPath} 
       />
