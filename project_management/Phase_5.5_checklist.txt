@@ -20,6 +20,18 @@
 - [ ] Create deposit/withdraw action buttons
 - [ ] Implement trade buttons for each asset
 
+## Terminal Page
+- [ ] Create terminal layout with trading chart
+- [ ] Implement order book display
+- [ ] Add recent trades section
+- [ ] Create trading form (buy/sell)
+- [ ] Implement exchange selector
+- [ ] Add trading pair selector
+- [ ] Design balances section
+- [ ] Implement time interval selectors for chart
+- [ ] Add asset table with mini charts
+- [ ] Create indicator tools for chart
+
 ## Asset Display
 - [ ] Create asset row component with icon, name, and ticker
 - [ ] Implement value and amount displays
@@ -31,17 +43,20 @@
 - [ ] Implement main performance chart with hover details
 - [ ] Create portfolio allocation donut chart
 - [ ] Add mini trend charts for individual assets
+- [ ] Implement interactive trading chart with tools
+
+## Navigation
+- [ ] Create global navigation bar
+- [ ] Implement notifications indicator
+- [ ] Add user profile dropdown
+- [ ] Create themed action buttons
+- [ ] Add section for terminal, dashboard, bots, earn, and markets
 
 ## Footer
 - [ ] Implement multi-column footer with platform information
 - [ ] Add referral section
 - [ ] Include mobile app download options
-
-## Navigation Components
-- [ ] Create global navigation bar
-- [ ] Implement notifications indicator
-- [ ] Add user profile dropdown
-- [ ] Create themed action buttons
+- [ ] Create links to resources, company info, and socials
 
 ## Next Steps
 1. Set up the dark theme configuration
@@ -49,4 +64,5 @@
 3. Create reusable components for charts and tables
 4. Implement the portfolio overview section
 5. Create the asset table with all functionality
-6. Add footer and finishing touches
+6. Develop the terminal trading interface
+7. Add footer and finishing touches

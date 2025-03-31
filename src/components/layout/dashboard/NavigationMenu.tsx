@@ -1,3 +1,4 @@
+
 import {
   Home,
   LayoutDashboard,
@@ -7,6 +8,10 @@ import {
   Scale,
   TrendingUp,
   LayoutPanelLeft,
+  Terminal as TerminalIcon,
+  Cpu,
+  DollarSign,
+  BarChart,
 } from "lucide-react";
 import { NavLink, useLocation } from "react-router-dom";
 import { useSidebar } from "@/components/ui/sidebar/sidebar-context";
@@ -42,6 +47,86 @@ export function NavigationMenu() {
           )}
         />
         Dashboard
+      </NavLink>
+      
+      <NavLink
+        to="/terminal"
+        className={clsx(
+          "group flex items-center px-3 py-2 text-sm font-medium rounded-md",
+          location.pathname === "/terminal"
+            ? "bg-primary/10 text-primary"
+            : "text-foreground hover:bg-primary/5"
+        )}
+      >
+        <TerminalIcon
+          className={clsx(
+            "mr-3 flex-shrink-0 h-6 w-6",
+            location.pathname === "/terminal"
+              ? "text-primary"
+              : "text-muted-foreground group-hover:text-foreground"
+          )}
+        />
+        Terminal
+      </NavLink>
+      
+      <NavLink
+        to="/bots"
+        className={clsx(
+          "group flex items-center px-3 py-2 text-sm font-medium rounded-md",
+          location.pathname === "/bots"
+            ? "bg-primary/10 text-primary"
+            : "text-foreground hover:bg-primary/5"
+        )}
+      >
+        <Cpu
+          className={clsx(
+            "mr-3 flex-shrink-0 h-6 w-6",
+            location.pathname === "/bots"
+              ? "text-primary"
+              : "text-muted-foreground group-hover:text-foreground"
+          )}
+        />
+        Bots
+      </NavLink>
+      
+      <NavLink
+        to="/earn"
+        className={clsx(
+          "group flex items-center px-3 py-2 text-sm font-medium rounded-md",
+          location.pathname === "/earn"
+            ? "bg-primary/10 text-primary"
+            : "text-foreground hover:bg-primary/5"
+        )}
+      >
+        <DollarSign
+          className={clsx(
+            "mr-3 flex-shrink-0 h-6 w-6",
+            location.pathname === "/earn"
+              ? "text-primary"
+              : "text-muted-foreground group-hover:text-foreground"
+          )}
+        />
+        Earn
+      </NavLink>
+      
+      <NavLink
+        to="/markets"
+        className={clsx(
+          "group flex items-center px-3 py-2 text-sm font-medium rounded-md",
+          location.pathname === "/markets"
+            ? "bg-primary/10 text-primary"
+            : "text-foreground hover:bg-primary/5"
+        )}
+      >
+        <BarChart
+          className={clsx(
+            "mr-3 flex-shrink-0 h-6 w-6",
+            location.pathname === "/markets"
+              ? "text-primary"
+              : "text-muted-foreground group-hover:text-foreground"
+          )}
+        />
+        Markets
       </NavLink>
       
       <NavLink

@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { BarChart2, User } from 'lucide-react';
+import { BarChart2, User, Terminal as TerminalIcon, Cpu, DollarSign, BarChart } from 'lucide-react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '@/context/AuthContext';
 
@@ -41,12 +41,63 @@ export function NavigationHeader() {
         <Link to="/" className="font-semibold text-lg">OmniTrade</Link>
       </div>
 
+      {user && (
+        <div className="hidden md:flex items-center gap-5">
+          <Link 
+            to="/dashboard" 
+            className={`text-sm font-medium hover:text-primary flex items-center gap-1 ${
+              location.pathname === "/dashboard" ? "text-primary border-b-2 border-primary pb-1" : "text-muted-foreground"
+            }`}
+          >
+            <BarChart2 className="w-4 h-4" />
+            <span>Dashboard</span>
+          </Link>
+          
+          <Link 
+            to="/terminal" 
+            className={`text-sm font-medium hover:text-primary flex items-center gap-1 ${
+              location.pathname === "/terminal" ? "text-primary border-b-2 border-primary pb-1" : "text-muted-foreground"
+            }`}
+          >
+            <TerminalIcon className="w-4 h-4" />
+            <span>Terminal</span>
+          </Link>
+          
+          <Link 
+            to="/bots" 
+            className={`text-sm font-medium hover:text-primary flex items-center gap-1 ${
+              location.pathname === "/bots" ? "text-primary border-b-2 border-primary pb-1" : "text-muted-foreground"
+            }`}
+          >
+            <Cpu className="w-4 h-4" />
+            <span>Bots</span>
+          </Link>
+          
+          <Link 
+            to="/earn" 
+            className={`text-sm font-medium hover:text-primary flex items-center gap-1 ${
+              location.pathname === "/earn" ? "text-primary border-b-2 border-primary pb-1" : "text-muted-foreground"
+            }`}
+          >
+            <DollarSign className="w-4 h-4" />
+            <span>Earn</span>
+          </Link>
+          
+          <Link 
+            to="/markets" 
+            className={`text-sm font-medium hover:text-primary flex items-center gap-1 ${
+              location.pathname === "/markets" ? "text-primary border-b-2 border-primary pb-1" : "text-muted-foreground"
+            }`}
+          >
+            <BarChart className="w-4 h-4" />
+            <span>Markets</span>
+          </Link>
+        </div>
+      )}
+
       <nav className="flex items-center gap-4">
         {user ? (
           <>
-            <Link to="/dashboard" className="text-sm font-medium hover:text-primary">Dashboard</Link>
-            <Link to="/strategies" className="text-sm font-medium hover:text-primary">Strategies</Link>
-            
             <div className="flex items-center gap-3">
               <div className="text-sm hidden md:block">
                 <span className="text-muted-foreground mr-1">Signed in as:</span>
